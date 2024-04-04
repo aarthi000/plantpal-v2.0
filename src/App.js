@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import Forum from './components/Forum'; // Importing the Forum component
+import MessageForm from './components/MessageForm'; // Importing the MessageForm component
 
 function App() {
+  const [messages, setMessages] = useState([]);
+
+  const handleAddMessage = (message) => {
+    setMessages([...messages, message]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>PlantPal Forum</h1>
+      <MessageForm onAddMessage={handleAddMessage} />
+      <Forum messages={messages} />
     </div>
   );
 }
