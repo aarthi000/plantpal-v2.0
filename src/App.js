@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Forum from './components/Forum';
 import MessageForm from './components/MessageForm';
 import './App.css'; // Importing the CSS file
+import Journal from './components/Journal';
+import Advice from './components/Advice';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -13,16 +15,26 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="title">PlantPal Forum</h1>
-      <div className="content">
-        <div className="center-content">
+      
+      <div className='Profile' id='leftColumn'>
+        Profile
+      </div>
+  
+        <div className="center-content" id='middleColumn'>
           <MessageForm onAddMessage={handleAddMessage} />
-        </div>
-        <div className="center-content">
           <Forum messages={messages} />
         </div>
+        
+    
+
+      <div className='Navigation' id='rightColumn'>
+        Navigation
+        <Journal/>
+        <Advice/>
       </div>
     </div>
+
+    
   );
 }
 
