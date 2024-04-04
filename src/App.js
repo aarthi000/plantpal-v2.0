@@ -18,19 +18,7 @@ function App() {
   };
 
   return (
-    // <div className="App">
-      
-    //   <div className='Profile' id='leftColumn'>
-    //     Profile
-    //   </div>
   
-    //     <div className="center-content" id='middleColumn'>
-    //       <MessageForm onAddMessage={handleAddMessage} />
-    //       <Forum messages={messages} />
-    //     </div>
-        
-    
-
       <div className='Navigation' id='rightColumn'>
         <Routers>
           <Routes>
@@ -40,7 +28,6 @@ function App() {
           </Routes>
         </Routers>
       </div>
-    // </div>
 
     
   );
