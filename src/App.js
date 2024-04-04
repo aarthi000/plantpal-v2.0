@@ -1,7 +1,8 @@
 // App.js
 import React, { useState } from 'react';
-import Forum from './components/Forum'; // Importing the Forum component
-import MessageForm from './components/MessageForm'; // Importing the MessageForm component
+import Forum from './components/Forum';
+import MessageForm from './components/MessageForm';
+import './App.css'; // Importing the CSS file
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -12,9 +13,15 @@ function App() {
 
   return (
     <div className="App">
-      <h1>PlantPal Forum</h1>
-      <MessageForm onAddMessage={handleAddMessage} />
-      <Forum messages={messages} />
+      <h1 className="title">PlantPal Forum</h1>
+      <div className="content">
+        <div className="center-content">
+          <MessageForm onAddMessage={handleAddMessage} />
+        </div>
+        <div className="center-content">
+          <Forum messages={messages} />
+        </div>
+      </div>
     </div>
   );
 }
