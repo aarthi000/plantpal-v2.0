@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Forum from './components/Forum';
 import MessageForm from './components/MessageForm';
-import './App.css'; // Importing the CSS file
+import './App.css'; // Importing the CSS files
 
 function App() {
   const [messages, setMessages] = useState([]);
