@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Routers, Route, Routes, Redirect } from "react-router-dom";
 // import { Routes_ } from './Routes';
-import {Advice} from "./pages/Advice";
+import Advice from './pages/Advice';
 import Forum_page from "./pages/Forum_page";
 import {Journal} from "./pages/Journal";
 import Forum from './components/Forum';
