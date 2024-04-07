@@ -1,30 +1,51 @@
 import React, { useState } from 'react';
 import './Advice.css'; // Import CSS file for styling
+// Utilizing Google Deepmind's Generative AI Gemini model 
 
 const Advice = () => {
   const [inputText, setInputText] = useState('');
+  const [outputText, setOutputText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (event) => {
     setInputText(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // You can add code here to process the input text
-    // using OpenAI's API
-    console.log('Input text:', inputText);
-    // Clear input after submitting
-    setInputText('');
+    setIsLoading(true);
+
+    try {
+
+      
+      const prompt = inputText;
+      /*
+        - https://ai.google.dev/ 
+        
+        Go to this site and click on generate API Key with Google Studios. Sign into your Google account.
+      */
+      const api = 'XXX'; // Enter your API KEY 
+
+      const { GoogleGenerativeAI } = require("@google/generative-ai"); 
+
+      const genAI = new GoogleGenerativeAI(api); 
+
+      const model = genAI.getGenerativeModel( {model: "gemini-pro"}); 
+      const result = await model.generateContent([prompt]);
+      console.log("RESPONSE AI: ", result.response.text());
+      
+      setOutputText( result.response.text()); // data.choices[0].text.trim());
+      
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setOutputText('Error fetching data. Please try again.');
+    }
+
+    setIsLoading(false);
   };
 
   return (
     <div className="advice-container">
-      <div className="advice-description">
-        <p>
-          Welcome to PlantPal's gardening advice page! Have a question about gardening? 
-          Enter your question below and our AI assistant will provide you with advice!
-        </p>
-      </div>
       <div className="advice-form">
         <h1 className="advice-heading">Gardening Advice</h1>
         <form onSubmit={handleSubmit}>
@@ -41,6 +62,17 @@ const Advice = () => {
           <button type="submit" className="submit-button">Get Advice</button>
         </form>
       </div>
+
+      {isLoading && <p>Loading...</p>}
+
+      {outputText && (
+        <div className="output-container">
+          <div className="output-box">
+            <h1 className="result-heading">Result</h1>
+            <p className="output-text">{outputText}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -9,7 +9,6 @@ import Forum from './components/Forum';
 import MessageForm from './components/MessageForm';
 import './App.css'; // Importing the CSS file
 
-
 function App() {
   const [messages, setMessages] = useState([]);
 
@@ -18,7 +17,7 @@ function App() {
   };
 
   return (
-  
+    
       <div className='Navigation' id='rightColumn'>
         <Routers>
           <Routes>
