@@ -29,6 +29,8 @@ function App() {
                 <Route path="/" element={<Forum_page />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/advice" element={<Advice />} />
+                <Route path="/journal" element={<Journal />} />
               </Routes>
             </AuthProvider>
           </Router>

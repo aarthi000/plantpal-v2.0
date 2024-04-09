@@ -1,8 +1,3 @@
-// export const Forum_page = () => {
-//   return (
-//     <h1>This is the forum Page</h1>
-//   );
-// };
 import React, { useState } from 'react';
 import {Advice} from "../pages/Advice";
 import {Journal} from "../pages/Journal";
