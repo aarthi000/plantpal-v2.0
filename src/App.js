@@ -26,7 +26,7 @@ function App() {
           <Router>
             <AuthProvider>
               <Routes>
-                <Route path="/" element={<Forum_page />} />
+                <Route exact path='/' element={<Forum_page/>}/>
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/advice" element={<Advice />} />
@@ -36,17 +36,6 @@ function App() {
           </Router>
         </div>
       </Container>
-    
-  
-  //     <div className='Navigation' id='rightColumn'>
-  //       <Routers>
-  //         <Routes>
-  //           <Route exact path="/" element={<Forum_page/>} />
-  //           <Route exact path="/advice" element={<Advice/>} />
-  //           <Route exact path="/journal" element={<Journal/>} />
-  //         </Routes>
-  //       </Routers>
-  //     </div>
 
     
   );
