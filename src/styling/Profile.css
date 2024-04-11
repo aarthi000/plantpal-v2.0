@@ -1,0 +1,51 @@
+.logo {
+    display:flex;
+    /* height:5rem; */
+    font-weight: bold;
+    font-size:40px;
+    gap:1.5rem;
+    align-items: center;
+    justify-content: center;
+    height:4%;
+    padding-top: 3rem;
+    /* padding:10px; Adds space inside the box */
+    /* border-radius: 8px; Optional: Rounds the corners of the box */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); Optional: Adds a subtle shadow */
+    /* margin: 20px 0;  */
+    width: 300px;
+    height: 150px;
+    color: whitesmoke;
+}
+
+
+.logo > img {
+    width:20rem;
+    height:auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.h2{
+    color: black;
+}
+
+.user_name{
+    padding-top: 3rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.user_location > img {
+    width:2rem;
+    height:2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.user_location{
+    display: flex;
+    align-items: center; /* Centers items vertically within the container */
+    gap: 0.5rem;
+}
