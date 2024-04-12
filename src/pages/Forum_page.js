@@ -10,7 +10,7 @@ import { Link } from "react-router-dom"
 import '../App.css'; // Importing the CSS file
 
 import { useNavigate } from "react-router-dom";
-import { formatPrefix } from 'd3';
+// import { formatPrefix } from 'd3';
 
 function Forum_page() {
     const navigate = useNavigate();
@@ -44,13 +44,13 @@ function Forum_page() {
     }
     
     return (
-        <div className="App">
-            <div className="center-content" id='leftColumn'>
-                <h2 className="text-center mb-4">Profile</h2>
+        <div className="w-full">
+            <div className="center-content">
+                <div className="text-center mb-4">Profile</div>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Button variant="link" onClick={handleLogout}>Logout</Button>
            </div>
-            <div className="center-content" id='middleColumn'>
+            <div className="center-content">
               <MessageForm onAddMessage={handleAddMessage} />
               <Forum messages={messages} />
             </div>
@@ -62,6 +62,7 @@ function Forum_page() {
 
                 </div>
             </header>
+
         </div>
         
         // <div class="container">
