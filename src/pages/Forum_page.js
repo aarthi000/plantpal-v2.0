@@ -46,22 +46,22 @@ function Forum_page() {
     return (
         <div className="w-full">
             <div className="center-content">
-                <div className="text-center mb-4">Profile</div>
+                <div className="text-center mb-4 font-bold text-6xl pt-12">welcome in.</div>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Button variant="link" onClick={handleLogout}>Logout</Button>
-           </div>
-            <div className="center-content">
-              <MessageForm onAddMessage={handleAddMessage} />
-              <Forum messages={messages} />
             </div>
-           
-            <header className="App-header">
-                <div className="btn-group">
-                    <button className="role-button" onClick={clickAdvice}>Advice</button>
-                    <button className="role-button" onClick={clickJournal}>Journal</button>
-
+            <div className='bg-gradient-to-r from-teal-200 to-lime-200 shadow-sm p-2 m-8 rounded-lg'>
+                <div className="bg-white center-content border-1 gap-48 rounded-lg p-12">
+                    <MessageForm onAddMessage={handleAddMessage} />
+                    <Forum messages={messages} />
                 </div>
-            </header>
+            </div>
+            <div className="flex justify-center">
+                <div className="flex gap-8">
+                    <button className="border-1 px-2 py-1 rounded-lg border-green-800" onClick={clickAdvice}>Get Advice</button>
+                    <button className="border-1 px-2 py-1 rounded-lg border-green-800" onClick={clickJournal}>Add to My Journal</button>
+                </div>
+            </div>
 
         </div>
         
