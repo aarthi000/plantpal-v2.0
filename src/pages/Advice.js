@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './Advice.css'; // Import CSS file for styling
-// Utilizing Google Deepmind's Generative AI Gemini model 
+// Import Tailwind CSS directly
+// Removed './Advice.css' import
 
 const Advice = () => {
   const [inputText, setInputText] = useState('');
@@ -16,8 +16,6 @@ const Advice = () => {
     setIsLoading(true);
 
     try {
-
-      
       const prompt = inputText;
       /*
         - https://ai.google.dev/ 
@@ -45,34 +43,52 @@ const Advice = () => {
   };
 
   return (
-    <div className="advice-container">
-      <div className="advice-form">
-        <h1 className="advice-heading">Gardening Advice</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="promptInput" className="input-label">Enter your gardening question:</label>
-          <input
-            type="text"
-            id="promptInput"
-            value={inputText}
-            onChange={handleInputChange}
-            className="input-field"
-            placeholder="E.g., How to grow tomatoes?"
-            required
-          />
-          <button type="submit" className="submit-button">Get Advice</button>
-        </form>
+    <div className="bg-[#151321] min-h-screen">
+      <div className='flex justify-between items-center align-center px-12 py-6'>
+          <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
+
+          <div className='flex gap-4'>
+            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" >💭 Get Advice</button>
+            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs">📝 My Journal</button>
+            <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
+                <button >logout</button>
+          </div>
+          </div>
       </div>
 
-      {isLoading && <p>Loading...</p>}
+      <div className="flex justify-center">
+          <div className="flex gap-24">
 
-      {outputText && (
-        <div className="output-container">
-          <div className="output-box">
-            <h1 className="result-heading">Result</h1>
-            <p className="output-text">{outputText}</p>
           </div>
+      </div>
+
+      <div className="flex flex-col items-center justify-center pt-24 px-24">
+        <div className="w-full bg-white p-8 rounded-lg shadow-lg">
+          <h1 className="text-3xl font-bold text-[#151321] mb-6">Gardening Advice</h1>
+          <form onSubmit={handleSubmit} className="mb-6">
+            <label htmlFor="promptInput" className="block text-[#151321] text-sm font-semibold mb-2">Enter your gardening question:</label>
+            <input
+              type="text"
+              id="promptInput"
+              value={inputText}
+              onChange={handleInputChange}
+              className="block w-full py-2 px-4 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:border-green-500"
+              placeholder="E.g., How to grow tomatoes?"
+              required
+            />
+            <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:bg-green-600">Get Advice</button>
+          </form>
+
+          {isLoading && <p>Loading...</p>}
+
+          {outputText && (
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <h1 className="text-xl font-bold text-[#151321] mb-4">Result</h1>
+              <p className="text-[#151321]">{outputText}</p>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
