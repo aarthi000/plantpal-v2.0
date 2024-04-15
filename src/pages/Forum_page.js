@@ -1,99 +1,92 @@
-import React, { useState } from 'react';
-import {Advice} from "../pages/Advice";
-import {Journal} from "../pages/Journal";
+import React, { useState, useEffect, useRef } from 'react';
+import { Alert } from "react-bootstrap";
+import { useAuth } from "./login/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import Forum from '../components/Forum';
 import MessageForm from '../components/MessageForm';
-import { Card, Button, Alert } from "react-bootstrap"
-import { useAuth } from "./login/contexts/AuthContext"
-import { Link } from "react-router-dom"
-
-import '../App.css'; // Importing the CSS file
-
-import { useNavigate } from "react-router-dom";
-import { formatPrefix } from 'd3';
 
 function Forum_page() {
     const navigate = useNavigate();
+    const { logout } = useAuth();
     const [messages, setMessages] = useState([]);
+    const [error, setError] = useState("");
+    const forumRef = useRef(null);
 
+    useEffect(() => {
+        // Adjust the height of the forum container
+        if (forumRef.current) {
+            const forumHeight = forumRef.current.scrollHeight;
+            forumRef.current.style.height = `${forumHeight}px`;
+        }
+    }, [messages]);
 
     const handleAddMessage = (message) => {
-      setMessages([...messages, message]);
+        setMessages([...messages, message]);
     };
-  
-    function clickAdvice() {
-        navigate("/advice")
-    }
 
-    function clickJournal() {
-        navigate("/journal")
-    }
-
-    const [error, setError] = useState("")
-    const { currentUser, logout } = useAuth()
-
-    async function handleLogout() {
-        setError("")
+    const handleLogout = async () => {
+        setError("");
 
         try {
-        await logout()
-        navigate("/login")
+            await logout();
+            navigate("/login");
         } catch {
-        setError("Failed to log out")
+            setError("Failed to log out");
         }
-    }
-    
-    return (
-        <div className="App">
-            <div className="center-content" id='leftColumn'>
-                <h2 className="text-center mb-4">Profile</h2>
-                {error && <Alert variant="danger">{error}</Alert>}
-                <Button variant="link" onClick={handleLogout}>Logout</Button>
-           </div>
-            <div className="center-content" id='middleColumn'>
-              <MessageForm onAddMessage={handleAddMessage} />
-              <Forum messages={messages} />
-            </div>
-           
-            <header className="App-header">
-                <div className="btn-group">
-                    <button className="role-button" onClick={clickAdvice}>Advice</button>
-                    <button className="role-button" onClick={clickJournal}>Journal</button>
+    };
 
+    const clickAdvice = () => {
+        navigate("/advice");
+    };
+
+    const clickJournal = () => {
+        navigate("/journal");
+    };
+
+    return (
+        <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12">
+            <div className='flex justify-between items-center align-center px-12 py-6'>
+                <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
+                <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
+                    <button onClick={handleLogout}>logout</button>
                 </div>
-            </header>
+            </div>
+            <div className="flex gap-2 justify-center items-center align-center">
+                <div className='text-6xl justify-center items-center align-center'>
+                ✨
+                </div>
+                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12">welcome to your profile.</div>
+                {error && <Alert variant="danger">{error}</Alert>}
+                <div className='text-6xl justify-center items-center align-center'>
+                ✨
+                </div>
+            </div>
+            <div className="flex justify-center">
+                <div className="flex gap-24">
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickAdvice}>💭 Get Advice</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickJournal}>📝 My Journal</button>
+                </div>
+            </div>
+
+            <div className='bg-gradient-to-r from-teal-200 to-lime-200 shadow-sm p-2 m-8 rounded-lg'>
+                <div className='text-[#151321] font-bold text-xl pt-2 pl-2'>
+                    💬🌿 join the Green Chat...
+                </div>
+                <div className="bg-white center-content border-1 gap-48 rounded-lg p-12 " ref={forumRef}>
+                    <MessageForm onAddMessage={handleAddMessage} />
+                    <Forum messages={messages} />
+                </div>
+            </div>
+
+            <div className="fixed bottom-0 left-0 right-0 bg-[#151321] text-white text-center py-4">
+                <div className="text-white text-center flex flex-col gap-2 opacity-50">
+                    <div className="text-sm font-semibold">Contact Us</div>
+                    <div className="text-xs">Have questions or feedback? Reach out to us at:</div>
+                    <div className="text-xs">contact@plantpal.com</div>
+                </div>
+            </div>
         </div>
-        
-        // <div class="container">
-        //     <header className="App-header">
-        //          <div className="btn-group">
-        //             <button className="role-button" onClick={clickAdvice}>Advice</button>
-        //             <button className="role-button" onClick={clickJournal}>Journal</button>
-                    
-        //          </div>
-        //     </header>
-        //     <div class="row">
-        //         <div class="col">
-        //             <div class="card">
-        //                 <div class="card-body">
-        //                     <h5 class="card-title">Profile</h5>
-        //                     {error && <Alert variant="danger">{error}</Alert>}
-        //                     {/* <strong>Email:</strong> {currentUser.email} */}
-        //                     <Button variant="link" onClick={handleLogout}>Logout</Button>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //         <div class="col">
-        //             <div class="card">
-        //                 <div class="card-body">
-        //                     <h5 class="card-title">PlantPal Forum</h5>
-        //                     <MessageForm onAddMessage={handleAddMessage} />
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
-    )
+    );
 }
 
 export default Forum_page;
