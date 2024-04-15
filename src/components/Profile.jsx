@@ -16,7 +16,7 @@ const Profile = () => {
     </div>
 
     <div className='user_location'>
-        <i class="fa-phone">07989 936719</i>
+        <i class="fa-phone"></i>
         <h3>College Station, TX</h3>
     </div>
 
