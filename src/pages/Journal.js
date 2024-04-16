@@ -33,7 +33,7 @@ export const Journal = () => {
     };
 
     const clickForum = () => {
-      navigate("/forum");
+      navigate("/");
   };
 
     // const clickForum = () => {

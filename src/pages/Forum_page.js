@@ -35,6 +35,10 @@ function Forum_page() {
         }
     };
 
+    const clickForum = () => {
+        navigate("/");
+    }
+
     const clickAdvice = () => {
         navigate("/advice");
     };
@@ -55,7 +59,7 @@ function Forum_page() {
                 <div className='text-6xl justify-center items-center align-center'>
                 ✨
                 </div>
-                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12">welcome to your profile.</div>
+                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12">PlantPal Forum</div>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <div className='text-6xl justify-center items-center align-center'>
                 ✨
@@ -63,6 +67,7 @@ function Forum_page() {
             </div>
             <div className="flex justify-center">
                 <div className="flex gap-24">
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickForum}>🌿 Forum</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickAdvice}>💭 Get Advice</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickJournal}>📝 My Journal</button>
                 </div>
