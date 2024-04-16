@@ -24,7 +24,7 @@ const Advice = () => {
         
         Go to this site and click on generate API Key with Google Studios. Sign into your Google account.
       */
-      const api = 'AIzaSyDY_a6qdSaGYoT-_4Q3czlfFosf0Tze0PA'; // Enter your API KEY 
+      const api = 'XXXX'; // Enter your API KEY 
 
       const { GoogleGenerativeAI } = require("@google/generative-ai"); 
 
