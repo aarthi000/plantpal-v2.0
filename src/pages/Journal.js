@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Alert } from "react-bootstrap";
-// import { useAuth } from "../login/contexts/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
-// import JournalEntries from '../components/JournalEntries';
+import { Alert } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import Calendar from '../components/Calender'; // Import your calendar component
 
 export const Journal = () => {
     const navigate = useNavigate();
-    // const { logout } = useAuth();
-    // const [entries, setEntries] = useState([]);
-    const [error, setError] = useState("");
+    const [error, setError] = useState('');
 
     useEffect(() => {
         // Fetch journal entries from database or local storage
@@ -17,37 +14,22 @@ export const Journal = () => {
         // setEntries(fetchedEntries);
     }, []);
 
-    // const handleLogout = async () => {
-    //     setError("");
-
-    //     try {
-    //         await logout();
-    //         navigate("/login");
-    //     } catch {
-    //         setError("Failed to log out");
-    //     }
-    // };
-
     const clickAdvice = () => {
-        navigate("/advice");
+        navigate('/advice');
     };
 
     const clickForum = () => {
-      navigate("/");
-  };
-
-    // const clickForum = () => {
-    //     navigate("/forum");
-    // };
+        navigate('/');
+    };
 
     return (
         <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12">
             <div className='flex justify-between items-center align-center px-12 py-6'>
-                <Link href="/Forum_page">
+                <Link to="/Forum_page">
                   <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
                 </Link>
                 <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
-                    <button >logout</button>
+                    <button>logout</button>
                 </div>
             </div>
             <div className="flex flex-col gap-2 justify-center items-center">
@@ -59,7 +41,7 @@ export const Journal = () => {
             </div>
             <div className="flex justify-center">
                 <div className="flex gap-24">
-                    <button onClick={clickAdvice} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" >💭 Get Advice</button>
+                    <button onClick={clickAdvice} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold">💭 Get Advice</button>
                     <button onClick={clickForum} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold">🌿 Forum</button>
                     <button onClick={clickForum} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold">🌿 Find Plants</button>
                 </div>
@@ -70,7 +52,8 @@ export const Journal = () => {
                     📝 My Journal Entries
                 </div>
                 <div className="bg-white center-content border-1 gap-48 rounded-lg p-12">
-                    
+                    {/* Include your Calendar component here */}
+                    <Calendar />
                 </div>
             </div>
 
