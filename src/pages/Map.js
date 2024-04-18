@@ -65,7 +65,11 @@ export default function Map() {
   };
 
   const clickForum = () => {
-    navigate("/forum");
+    navigate("/");
+  };
+
+  const clickAdvice = () => {
+    navigate("/advice");
   };
 
   const clickJournal = () => {
@@ -78,8 +82,9 @@ export default function Map() {
         <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
         <div className='flex gap-4'>
           <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickForum}>🌿 Forum</button>
+          <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickAdvice}>💭 Get Advice</button>
           <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickJournal}>📝 My Journal</button>
-          <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={() => navigate("/map")}>🌿 Find Plants</button>
+          
           <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
             <button >logout</button>
           </div>
