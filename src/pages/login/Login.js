@@ -32,7 +32,8 @@ export default function Login() {
         <img src="./plantpallogo.png" alt="leaf" className="h-8" />
       </div>
       <div className="flex flex-col items-center justify-center gap-4 mt-8">
-        <h2 className="text-2xl font-bold text-center mb-4 text-white">Log In</h2>
+      <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12 pb-4">Log In</div>
+
         {error && <Alert variant="danger">{error}</Alert>}
         
         <Card className="w-full max-w-xs">
