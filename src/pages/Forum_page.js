@@ -47,10 +47,6 @@ function Forum_page() {
         navigate("/journal");
     };
 
-    const clickMap = () => {
-        navigate("/map");
-    }
-
     return (
         <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12">
             <div className='flex justify-between items-center align-center px-12 py-6'>
@@ -74,13 +70,12 @@ function Forum_page() {
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickForum}>🌿 Forum</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickAdvice}>💭 Get Advice</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickJournal}>📝 My Journal</button>
-                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickMap}>🌿 Find Plants</button>
                 </div>
             </div>
 
             <div className='bg-gradient-to-r from-teal-200 to-lime-200 shadow-sm p-2 m-8 rounded-lg'>
                 <div className='text-[#151321] font-bold text-xl pt-2 pl-2'>
-                    💬🌿 join the Community Forum...
+                    💬🌿 join the Green Chat...
                 </div>
                 <div className="bg-white center-content border-1 gap-48 rounded-lg p-12 " ref={forumRef}>
                     <MessageForm onAddMessage={handleAddMessage} />
