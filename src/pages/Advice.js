@@ -24,7 +24,7 @@ const Advice = () => {
         
         Go to this site and click on generate API Key with Google Studios. Sign into your Google account.
       */
-      const api = 'XXXX'; // Enter your API KEY 
+      const api = process.env.REACT_APP_ADVICE_API_KEY; // Enter your API KEY 
 
       const { GoogleGenerativeAI } = require("@google/generative-ai"); 
 
@@ -74,7 +74,7 @@ const Advice = () => {
 
       <div className="flex flex-col items-center justify-center pt-24 px-24">
         <div className="w-full bg-white p-8 rounded-lg shadow-lg">
-          <h1 className="text-3xl font-bold text-[#151321] mb-6">Gardening Advice</h1>
+          <h1 className="text-3xl font-bold text-[#151321] mb-6">AI Gardening Advice</h1>
           <form onSubmit={handleSubmit} className="mb-6">
             <label htmlFor="promptInput" className="block text-[#151321] text-sm font-semibold mb-2">Enter your gardening question:</label>
             <input
