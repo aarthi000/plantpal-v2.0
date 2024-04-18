@@ -60,7 +60,8 @@ export const Journal = () => {
             <div className="flex justify-center">
                 <div className="flex gap-24">
                     <button onClick={clickAdvice} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" >💭 Get Advice</button>
-                    <button onClick={clickForum} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold">🌿 Go to Forum</button>
+                    <button onClick={clickForum} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold">🌿 Forum</button>
+                    <button onClick={clickForum} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold">🌿 Find Plants</button>
                 </div>
             </div>
 

@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './login/contexts/AuthContext';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { useNavigate } from "react-router-dom"; 
 
 const containerStyle = {
   width: '100%',
-  height: '400px',
+  height: '600px',
 };
 
 const center = {
-  lat: 40.7128,
-  lng: -74.0060,
+  lat: 30.601433,
+  lng: -96.314464,
 };
 
 export default function Map() {
@@ -23,6 +24,8 @@ export default function Map() {
     longitude: '',
     description: '',
   });
+  const [selectedPin, setSelectedPin] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const db = firebase.firestore();
@@ -45,12 +48,10 @@ export default function Map() {
   const handleAddPin = async () => {
     const db = firebase.firestore();
 
-    console.log('Current User:', currentUser); 
-
     if (!currentUser) {
-        console.error('User is not authenticated');
-        return;
-      }
+      console.error('User is not authenticated');
+      return;
+    }
 
     try {
       await db.collection('pins').add({
@@ -63,14 +64,31 @@ export default function Map() {
     }
   };
 
+  const clickForum = () => {
+    navigate("/forum");
+  };
+
+  const clickJournal = () => {
+    navigate("/journal");
+  };
+
   return (
     <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12">
       <div className='flex justify-between items-center px-12 py-6'>
         <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
+        <div className='flex gap-4'>
+          <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickForum}>🌿 Forum</button>
+          <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickJournal}>📝 My Journal</button>
+          <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={() => navigate("/map")}>🌿 Find Plants</button>
+          <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
+            <button >logout</button>
+          </div>
+        </div>
       </div>
-      <div className="flex justify-center mt-8">
-        <div className="flex w-full max-w-4xl">
-          <div className="w-1/2 pr-4">
+      <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12 pb-2">plant your idea.</div>
+      <div className="flex justify-center mt-4">
+        <div className="flex w-full max-w-6xl">
+          <div className="w-3/4 pr-4">
             <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} loading="async">
               <GoogleMap
                 mapContainerStyle={containerStyle}
@@ -89,13 +107,23 @@ export default function Map() {
                     key={pin.id}
                     position={{ lat: pin.latitude, lng: pin.longitude }}
                     title={pin.description}
+                    onClick={() => setSelectedPin(pin)}
                   />
                 ))}
+                
+                {selectedPin && (
+                  <InfoWindow
+                    position={{ lat: selectedPin.latitude, lng: selectedPin.longitude }}
+                    onCloseClick={() => setSelectedPin(null)}
+                  >
+                    <div>{selectedPin.description}</div>
+                  </InfoWindow>
+                )}
               </GoogleMap>
             </LoadScript>
           </div>
-          <div className="w-1/2 bg-white p-8 rounded">
-            <h3 className="text-xl font-semibold mb-4">Add a new pin:</h3>
+          <div className="w-1/4 bg-white p-8 rounded">
+            <h3 className="text-xl font-semibold mb-4">Pin Your Plant:</h3>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">Latitude:</label>
               <input
@@ -118,13 +146,13 @@ export default function Map() {
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">Description:</label>
-              <input
-                type="text"
+              <textarea
                 name="description"
                 value={newPin.description}
                 onChange={handleChange}
                 className="mt-1 p-2 w-full border rounded"
-              />
+                rows="4"
+              ></textarea>
             </div>
             <button onClick={handleAddPin} className="bg-green-500 text-white px-4 py-2 rounded">
               Add Pin
