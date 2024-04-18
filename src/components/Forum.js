@@ -1,5 +1,6 @@
 // Forum.js
 import React from 'react';
+import moment from 'moment';
 import '../App.css'; // Importing the CSS file with correct path
 
 function Forum({ messages }) {
@@ -14,19 +15,22 @@ function Forum({ messages }) {
               <div className="user-avatar"></div> {/* Placeholder for user avatar */}
               <div className="user-info">
                 <p className="user-name">John Doe</p> {/* Replace with actual user name */}
-                <p className="timestamp">10 minutes ago</p> {/* Replace with actual timestamp */}
+                <p className="timestamp">{formatTimestamp(message.timestamp)}</p> {/* Replace with actual timestamp */}
               </div>
             </div>
-            {/* Message Content */}
-            <div className="message-content">
-              <p>{message}</p> {/* Message text */}
-            </div>
-            {/* End of Message */}
+            <div className="message-content"><p>{message}</p></div>
           </div>
+
+
         ))}
       </div>
     </div>
   );
+}
+
+// Function to format timestamp
+function formatTimestamp(timestamp) {
+  return moment(timestamp).fromNow(); // Use moment library to format timestamp
 }
 
 export default Forum;
