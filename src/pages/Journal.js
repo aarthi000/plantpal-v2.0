@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import Calendar from '../components/Calender'; // Import your calendar component
+import Calendar from '../components/Calendar'; // Import your calendar component
 
 export const Journal = () => {
     const navigate = useNavigate();

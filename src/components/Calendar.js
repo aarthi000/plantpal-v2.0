@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const CalendarJournal = () => {
+const Calendar = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [selectedDay, setSelectedDay] = useState(null);
@@ -183,4 +183,4 @@ const CalendarJournal = () => {
   );
 };
 
-export default CalendarJournal;
+export default Calendar;
