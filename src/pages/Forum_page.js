@@ -7,7 +7,7 @@ import MessageForm from '../components/MessageForm';
 
 function Forum_page() {
     const navigate = useNavigate();
-    const { logout } = useAuth();
+    const { currentUser, logout } = useAuth();
     const [messages, setMessages] = useState([]);
     const [error, setError] = useState("");
     const forumRef = useRef(null);
@@ -16,7 +16,7 @@ function Forum_page() {
         // Adjust the height of the forum container
         if (forumRef.current) {
             const forumHeight = forumRef.current.scrollHeight;
-            forumRef.current.style.height = `${forumHeight}px`;
+            forumRef.current.style.height = `${forumHeight}px` + 15;
         }
     }, [messages]);
 
@@ -35,6 +35,10 @@ function Forum_page() {
         }
     };
 
+    const clickForum = () => {
+        navigate("/");
+    }
+
     const clickProfile = () => {
         navigate("/profile");
     };
@@ -47,19 +51,30 @@ function Forum_page() {
         navigate("/journal");
     };
 
+    const clickMap = () => {
+        navigate("/map");
+    };
+
     return (
         <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12">
             <div className='flex justify-between items-center align-center px-12 py-6'>
                 <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
-                <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
-                    <button onClick={handleLogout}>logout</button>
+                <div className>
+                    {currentUser && (
+                        <div className="text-white text-xs font-semibold">
+                            {currentUser.email}
+                        </div>
+                    )}
+                    <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
+                        <button onClick={handleLogout}>logout</button>
+                    </div>
                 </div>
             </div>
             <div className="flex gap-2 justify-center items-center align-center">
                 <div className='text-6xl justify-center items-center align-center'>
                 ✨
                 </div>
-                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12">welcome to your profile.</div>
+                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12">PlantPal Forum</div>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <div className='text-6xl justify-center items-center align-center'>
                 ✨
@@ -68,8 +83,10 @@ function Forum_page() {
             <div className="flex justify-center">
                 <div className="flex gap-24">
                 <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickProfile}> My Profile</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickForum}>🌿 Forum</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickAdvice}>💭 Get Advice</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickJournal}>📝 My Journal</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickMap}>🌿 Find Plants</button>
                 </div>
             </div>
 

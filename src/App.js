@@ -13,6 +13,7 @@ import Login from "./pages/login/Login";
 import Profile from "./pages/Profile";
 import { Container } from 'react-bootstrap';
 import { AuthProvider } from './pages/login/contexts/AuthContext';
+import Map from './pages/Map';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/advice" element={<Advice />} />
                 <Route path="/journal" element={<Journal />} />
+                <Route path="/map" element={<Map />} />
               </Routes>
             </AuthProvider>
           </Router>

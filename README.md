@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Dependencies to install 
+npm install react-router-dom
+Npm install dotenv
+Npm install bootstrap
+Npm install d3
+Npm install env-cmd
+Npm install moment
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
