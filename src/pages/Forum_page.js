@@ -35,6 +35,10 @@ function Forum_page() {
         }
     };
 
+    const clickProfile = () => {
+        navigate("/profile");
+    };
+
     const clickAdvice = () => {
         navigate("/advice");
     };
@@ -63,6 +67,7 @@ function Forum_page() {
             </div>
             <div className="flex justify-center">
                 <div className="flex gap-24">
+                <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickProfile}> My Profile</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickAdvice}>💭 Get Advice</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickJournal}>📝 My Journal</button>
                 </div>

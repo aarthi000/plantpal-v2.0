@@ -10,6 +10,7 @@ import MessageForm from './components/MessageForm';
 import './App.css'; // Importing the CSS file
 import Signup from "./pages/login/Signup";
 import Login from "./pages/login/Login";
+import Profile from "./pages/Profile";
 import { Container } from 'react-bootstrap';
 import { AuthProvider } from './pages/login/contexts/AuthContext';
 
@@ -28,6 +29,7 @@ function App() {
               <Routes>
                 <Route exact path='/' element={<Forum_page/>}/>
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/advice" element={<Advice />} />
                 <Route path="/journal" element={<Journal />} />

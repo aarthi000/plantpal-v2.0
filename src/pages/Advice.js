@@ -48,6 +48,7 @@ const Advice = () => {
           <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
 
           <div className='flex gap-4'>
+            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" > My Profile</button>
             <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" >💭 Get Advice</button>
             <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs">📝 My Journal</button>
             <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
