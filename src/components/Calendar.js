@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import WeatherDisplay from "./WeatherDisplay";
 
 const Calendar = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -47,6 +48,7 @@ const Calendar = () => {
   const handleJournalChange = (event) => {
     setJournalEntry(event.target.value);
   };
+
   const saveJournalEntry = () => {
     if (selectedDay !== null && journalEntry.trim() !== "") {
       const entryKey = `${currentYear}-${currentMonth}-${selectedDay}`;
@@ -177,6 +179,15 @@ const Calendar = () => {
               Close
             </button>
           </div>
+        </div>
+      )}
+
+      {/* Weather Display for Selected Day */}
+      {selectedDay !== null && (
+        <div className="ml-8">
+          <WeatherDisplay
+            selectedDate={new Date(currentYear, currentMonth, selectedDay)}
+          />
         </div>
       )}
     </div>

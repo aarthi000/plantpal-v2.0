@@ -4,6 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import Calendar from '../components/Calendar'; // Import your calendar component
 
 export const Journal = () => {
+    //delete me!
+    const selectedDate = new Date('2024-04-01'); // Example date, replace with your desired date
+
     const navigate = useNavigate();
     const [error, setError] = useState('');
 
@@ -23,6 +26,7 @@ export const Journal = () => {
     };
 
     return (
+        
         <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12">
             <div className='flex justify-between items-center align-center px-12 py-6'>
                 <Link to="/Forum_page">
