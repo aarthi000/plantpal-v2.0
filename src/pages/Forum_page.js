@@ -55,13 +55,15 @@ function Forum_page() {
         <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12">
             <div className='flex justify-between items-center align-center px-12 py-6'>
                 <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
-                {currentUser && (
-                    <div className="text-white text-xs font-semibold">
-                        {currentUser.email}
+                <div>
+                    {currentUser && (
+                        <div className="text-white text-xs font-semibold">
+                            {currentUser.email}
+                        </div>
+                    )}
+                    <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
+                        <button onClick={handleLogout}>logout</button>
                     </div>
-                )}
-                <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
-                    <button onClick={handleLogout}>logout</button>
                 </div>
             </div>
             <div className="flex gap-2 justify-center items-center align-center">
