@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './Profile.css';
 import '../pictures/userprofile.png'
 import { useAuth } from './login/contexts/AuthContext'
+import { useNavigate } from 'react-router-dom';
 
 
 const Profile = () => {
+
+    const navigate = useNavigate();
 
     const { currentUser } = useAuth(); // Destructure currentUser from useAuth
     const [userData, setUserData] = useState({
@@ -21,6 +24,10 @@ const Profile = () => {
             });
         }
     }, [currentUser]);
+
+    const clickHome = () => {
+        navigate('/');
+    };
     
   return (
     <div className="bg-[#151321] min-h-screen">
@@ -28,9 +35,7 @@ const Profile = () => {
           <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
 
           <div className='flex gap-4'>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" > My Profile</button>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" >💭 Get Advice</button>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs">📝 My Journal</button>
+            <button onClick={clickHome} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" > Home </button>
             <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
                 <button >logout</button>
           </div>
