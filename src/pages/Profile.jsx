@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
 import '../pictures/userprofile.png'
+import { useAuth } from './login/contexts/AuthContext'
+
+
 const Profile = () => {
-    const userData = {
-        name: 'Samantha Jones',
+
+    const { currentUser } = useAuth(); // Destructure currentUser from useAuth
+    const [userData, setUserData] = useState({
+        name: '',
         location: 'New York, United States',
         university: 'Columbia University - New York'
-      };
+    });
+
+    useEffect(() => {
+        if (currentUser) {
+            setUserData({
+                ...userData,
+                name: currentUser.email
+            });
+        }
+    }, [currentUser]);
     
   return (
     <div className="bg-[#151321] min-h-screen">
@@ -32,7 +46,7 @@ const Profile = () => {
     <div className='profileCard'>
         <div className='circle'></div>
         <div className='name'>
-            <h2>Samantha Jones</h2>
+            <h2>{userData.name}</h2>
         </div>
         
         <div className='stat'>
