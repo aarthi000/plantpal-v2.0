@@ -15,7 +15,9 @@ const Calendar = () => {
       const entryKey = `${currentYear}-${currentMonth}-${selectedDay}`;
       const storedEntries = localStorage.getItem(entryKey);
       if (storedEntries) {
-        setJournalEntriesForDay(JSON.parse(storedEntries));
+        // Split stored entries into an array of strings
+        const entriesArray = storedEntries.split("\n");
+        setJournalEntriesForDay(entriesArray);
       } else {
         setJournalEntriesForDay([]);
       }
@@ -55,19 +57,14 @@ const Calendar = () => {
       let storedEntries = localStorage.getItem(entryKey);
 
       try {
-        // Parse existing entries or initialize an empty array
-        let entries = storedEntries ? JSON.parse(storedEntries) : [];
-
-        // Add the new journal entry to the array
-        entries.push(journalEntry);
-
-        // Store the updated entries back in local storage
-        localStorage.setItem(entryKey, JSON.stringify(entries));
+        // Append new journal entry to existing stored entries
+        const updatedEntries = storedEntries ? `${storedEntries}\n${journalEntry}` : journalEntry;
+        localStorage.setItem(entryKey, updatedEntries);
 
         setIsModalOpen(false);
       } catch (error) {
-        console.error("Error parsing JSON data:", error);
-        // Handle parsing error (e.g., log error message, provide default behavior)
+        console.error("Error storing journal entry:", error);
+        // Handle storage error
       }
     }
   };
