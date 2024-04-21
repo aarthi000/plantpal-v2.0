@@ -115,7 +115,7 @@ const Calendar = () => {
               &gt;
             </button>
           </div>
-          <div className="grid grid-cols-7 gap-2">
+          <div className="grid grid-cols-7 gap-20">
             {Array(firstDayOfMonth)
               .fill(null)
               .map((_, index) => (
@@ -125,8 +125,9 @@ const Calendar = () => {
               .fill(null)
               .map((_, day) => (
                 <div
+                
                   key={day}
-                  className={`text-center py-2 border cursor-pointer ${
+                  className={`text-center px-20 py-20 border cursor-pointer ${
                     currentYear === new Date().getFullYear() &&
                     currentMonth === new Date().getMonth() &&
                     day + 1 === new Date().getDate()
