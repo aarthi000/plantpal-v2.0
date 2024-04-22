@@ -32,7 +32,7 @@ function Forum() {
         timestamp: new Date().toISOString(),
         imageUrl: selectedImage,
       };
-      setMessages([...messages, newMessage]);
+      setMessages([newMessage, ...messages]); // Add new message at the beginning
       setNewMessageContent(''); // Clear the input field
       setSelectedImage(null); // Clear selected image
     }
@@ -55,23 +55,6 @@ function Forum() {
 
   return (
     <div className="forum">
-      <div className="message-container">
-        {messages.map((message, index) => (
-          <div key={index} className="message-box">
-            {/* User Name, Timestamp, and Image */}
-            <div className="message-header">
-              <div className="user-info">
-                <p className="user-name">{currentUser.email}</p>
-                <p className="timestamp">{formatTimestamp(message.timestamp)}</p>
-              </div>
-              {message.imageUrl && (
-                <img src={message.imageUrl} alt="User uploaded" className="message-image" />
-              )}
-            </div>
-            <div className="message-content"><p>{message.content}</p></div>
-          </div>
-        ))}
-      </div>
       {/* Add message form */}
       <div className="add-message">
         <input
@@ -86,6 +69,23 @@ function Forum() {
           onChange={handleImageChange}
         />
         <button onClick={addMessage}>Post</button>
+      </div>
+      <div className="message-container">
+        {messages.reverse().map((message, index) => (
+          <div key={index} className="message-box">
+            {/* User Name, Timestamp, and Image */}
+            <div className="message-header">
+              <div className="user-info">
+                <p className="user-name">{currentUser.email}</p>
+                <p className="timestamp">{formatTimestamp(message.timestamp)}</p>
+              </div>
+              {message.imageUrl && (
+                <img src={message.imageUrl} alt="User uploaded" className="message-image" />
+              )}
+            </div>
+            <div className="message-content"><p>{message.content}</p></div>
+          </div>
+        ))}
       </div>
     </div>
   );
