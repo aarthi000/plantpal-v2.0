@@ -62,14 +62,6 @@ export const Garden = () => {
                     <Planner />
                 </div>
             </div>
-
-            <div className="fixed bottom-0 left-0 right-0 bg-[#151321] text-white text-center py-4">
-                <div className="text-white text-center flex flex-col gap-2 opacity-50">
-                    <div className="text-sm font-semibold">Contact Us</div>
-                    <div className="text-xs">Have questions or feedback? Reach out to us at:</div>
-                    <div className="text-xs">contact@plantpal.com</div>
-                </div>
-            </div>
         </div>
     );
 };

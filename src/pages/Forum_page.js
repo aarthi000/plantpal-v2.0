@@ -102,13 +102,7 @@ function Forum_page() {
                 </div>
             </div>
 
-            <div className="fixed bottom-0 left-0 right-0 bg-[#151321] bg-opacity-20 text-white text-center py-4">
-                <div className="text-white text-center flex flex-col gap-2 opacity-50">
-                    <div className="text-sm font-semibold">Contact Us</div>
-                    <div className="text-xs">Have questions or feedback? Reach out to us a contact@plantpal.com</div>
-                    {/* <div className="text-xs"></div> */}
-                </div>
-            </div>
+          
         </div>
     );
 }
