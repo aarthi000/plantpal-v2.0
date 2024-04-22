@@ -75,6 +75,8 @@ export default function Map() {
   const clickJournal = () => {
     navigate("/journal");
   };
+  
+ 
 
   const clickGarden = () => {
     navigate("/garden");
