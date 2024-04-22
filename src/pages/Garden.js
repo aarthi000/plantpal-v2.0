@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Calendar from '../components/Calendar'; // Import your calendar component
 import Planner from '../components/Planner';
 
-export const Journal = () => {
+export const Garden = () => {
     //delete me!
     const selectedDate = new Date('2024-04-01'); // Example date, replace with your desired date
 
@@ -24,10 +24,6 @@ export const Journal = () => {
 
     const clickForum = () => {
         navigate('/');
-    };
-
-    const clickGarden = () => {
-        navigate('/garden');
     };
 
     return (
@@ -53,8 +49,6 @@ export const Journal = () => {
                     <button onClick={clickAdvice} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold">💭 Get Advice</button>
                     <button onClick={clickForum} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold">🌿 Forum</button>
                     <button onClick={clickForum} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold">🌿 Find Plants</button>
-                    <button onClick={clickGarden} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold"> Garden Planner</button>
-
                 </div>
             </div>
 
@@ -62,12 +56,11 @@ export const Journal = () => {
                 <div className='text-[#151321] font-bold text-xl pt-2 pl-2'>
                     📝 My Journal Entries
                 </div>
+                
                 <div className="bg-white center-content border-1 gap-48 rounded-lg p-12">
                     {/* Include your Calendar component here */}
-                    <Calendar />
+                    <Planner />
                 </div>
-             
-             
             </div>
 
             <div className="fixed bottom-0 left-0 right-0 bg-[#151321] text-white text-center py-4">

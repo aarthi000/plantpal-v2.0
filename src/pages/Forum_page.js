@@ -55,6 +55,10 @@ function Forum_page() {
         navigate("/map");
     };
 
+    const clickGarden = () => {
+        navigate("/garden");
+    };
+
     return (
         <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12">
             <div className='flex justify-between items-center align-center px-12 py-6'>
@@ -83,6 +87,8 @@ function Forum_page() {
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickAdvice}>💭 Get Advice</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickJournal}>📝 My Journal</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickMap}>🌿 Find Plants</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickGarden}>📝 Garden Planner</button>
+
                 </div>
             </div>
 

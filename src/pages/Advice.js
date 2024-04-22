@@ -56,6 +56,10 @@ const Advice = () => {
     navigate("/map");
   }
 
+  const clickGarden = () => {
+    navigate("/garden");
+  }
+
   return (
     <div className="bg-[#151321] min-h-screen">
       <div className='flex justify-between items-center align-center px-12 py-6'>
@@ -67,6 +71,8 @@ const Advice = () => {
             <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickForum}>🌿 Forum</button>
             <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickJournal}>📝 My Journal</button>
             <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickMap}>🌿 Find Plants</button>
+            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickGarden}>🌿 Garden Planner</button>
+            
             <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
                 <button >logout</button>
           </div>

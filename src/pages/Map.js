@@ -76,6 +76,10 @@ export default function Map() {
     navigate("/journal");
   };
 
+  const clickGarden = () => {
+    navigate("/garden");
+  };
+
   return (
     <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12">
       <div className='flex justify-between items-center px-12 py-6'>
@@ -84,6 +88,8 @@ export default function Map() {
           <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickForum}>🌿 Forum</button>
           <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickAdvice}>💭 Get Advice</button>
           <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickJournal}>📝 My Journal</button>
+          <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickGarden}>Garden Planner</button>
+
           
           <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
             <button >logout</button>

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routers, Route, Routes, Redirect } from "react
 import Advice from './pages/Advice';
 import Forum_page from "./pages/Forum_page";
 import {Journal} from "./pages/Journal";
+import {Garden} from "./pages/Garden";
 import Forum from './components/Forum';
 import MessageForm from './components/MessageForm';
 import './App.css'; // Importing the CSS file
@@ -35,6 +36,9 @@ function App() {
                 <Route path="/advice" element={<Advice />} />
                 <Route path="/journal" element={<Journal />} />
                 <Route path="/map" element={<Map />} />
+                <Route path="/garden" element={<Garden />} />
+
+                
               </Routes>
             </AuthProvider>
           </Router>
