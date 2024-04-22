@@ -8,6 +8,7 @@ const Calendar = () => {
   const [journalEntry, setJournalEntry] = useState("");
   const [journalEntriesForDay, setJournalEntriesForDay] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [imageUrlsByDay, setImageUrlsByDay] = useState({}); // Map day numbers to arrays of image URLs
 
   useEffect(() => {
     // Load journal entries for the selected day from local storage
@@ -41,6 +42,21 @@ const Calendar = () => {
     setJournalEntry(event.target.value);
   };
 
+  const handleImageChange = (event) => {
+    const files = Array.from(event.target.files);
+
+    if (files.length > 0 && selectedDay !== null) {
+      const urls = files.map((file) => URL.createObjectURL(file));
+      const updatedUrls = { ...imageUrlsByDay };
+      if (updatedUrls[selectedDay]) {
+        updatedUrls[selectedDay] = [...updatedUrls[selectedDay], ...urls];
+      } else {
+        updatedUrls[selectedDay] = urls;
+      }
+      setImageUrlsByDay(updatedUrls);
+    }
+  };
+
   const saveJournalEntry = () => {
     if (selectedDay !== null && journalEntry.trim() !== "") {
       const entryKey = `${currentYear}-${currentMonth}-${selectedDay}`;
@@ -48,7 +64,7 @@ const Calendar = () => {
 
       try {
         // Append new journal entry to existing stored entries
-        const updatedEntries = storedEntries ? `${storedEntries}\n${journalEntry}` : journalEntry;
+        let updatedEntries = storedEntries ? `${storedEntries}\n${journalEntry}` : journalEntry;
         localStorage.setItem(entryKey, updatedEntries);
 
         // Update the journal entries for the selected day
@@ -146,12 +162,30 @@ const Calendar = () => {
             <h3 className="text-lg font-bold mb-2">
               {`${monthNames[currentMonth]} ${selectedDay}, ${currentYear}`}
             </h3>
-            <div className="mb-4">
+            <div className="mb-4" style={{ maxHeight: "200px", overflowY: "auto" }}>
               {journalEntriesForDay.map((entry, index) => (
-                <div key={index} className="border p-2 mb-2">
+                <div key={index} className="border p-2 mb-2" style={{ maxWidth: "300px", wordWrap: "break-word" }}>
                   {entry}
                 </div>
               ))}
+            </div>
+            {/* Display uploaded images for the selected day */}
+            {imageUrlsByDay[selectedDay] && (
+              <div className="mb-4">
+                {imageUrlsByDay[selectedDay].map((url, index) => (
+                  <img key={index} src={url} alt={`Image ${index + 1}`} style={{ maxWidth: "100%", marginBottom: "8px" }} />
+                ))}
+              </div>
+            )}
+            {/* Upload Image Button */}
+            <div>
+              <input
+                type="file"
+                accept="image/*"
+                className="mt-2"
+                onChange={handleImageChange}
+                multiple // Allow multiple file selection
+              />
             </div>
             {/* Journal Entry Input */}
             <textarea
@@ -176,25 +210,19 @@ const Calendar = () => {
             </div>
           </div>
         )}
-
-        {/* Spacer Content*/}
-        {selectedDay !== null && (
-          <div className="mt-4  p-4 rounded">
-          </div>
-        )}
-
-        {/* Weather Display */}
-        {selectedDay !== null && (
-          <div className="mt-4 w-64 bg-gradient-to-r from-teal-200 to-lime-200 p-4 rounded-l-lg">
-            <h3 className="text-lg font-bold mb-2">
-              Weather
-            </h3>
-            <div className="mt-2">
-              <WeatherDisplay selectedDate={new Date(currentYear, currentMonth, selectedDay)} />
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Weather Display */}
+      {selectedDay !== null && (
+        <div className="mt-4 w-64 bg-yellow-200 p-4 rounded-l-lg">
+          <h3 className="text-lg font-bold mb-2">
+            Weather
+          </h3>
+          <div className="">
+            <WeatherDisplay selectedDate={new Date(currentYear, currentMonth, selectedDay)} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
