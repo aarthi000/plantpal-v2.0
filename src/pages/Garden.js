@@ -54,7 +54,7 @@ export const Garden = () => {
 
             <div className='bg-gradient-to-r from-teal-200 to-lime-200 shadow-sm p-2 m-8 rounded-lg'>
                 <div className='text-[#151321] font-bold text-xl pt-2 pl-2'>
-                    📝 My Journal Entries
+                    Garden Planner
                 </div>
                 
                 <div className="bg-white center-content border-1 gap-48 rounded-lg p-12">
