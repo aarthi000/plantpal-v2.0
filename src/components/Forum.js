@@ -137,6 +137,7 @@ function Forum() {
       </div>
     </div>
   );
+  
 }
 
 function formatTimestamp(timestamp) {
