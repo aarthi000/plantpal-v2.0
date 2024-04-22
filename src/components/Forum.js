@@ -80,17 +80,48 @@ function Forum() {
 
   return (
     <div className="forum">
-      <div className="message-container">
-        {messages.map((message, index) => (
-          <div key={index} className="message-box">
-            {/* User Name and Timestamp */}
-            <div className="message-header">
-              <div className="user-info">
-                <p className="user-name">{currentUser.email}</p>
+      {/* Add message form */}
+      <div className="flex justify-between pb-4">
+        <div className='flex gap-4 justify-center items-center align-center'>
+          <div className='text-green-800 font-bold'> 1. Write your message</div>
+          <input
+            className="border-2 bg-gray-100 bg-opacity-30 px-4 rounded-lg"
+            type="text"
+            placeholder="Type your message..."
+            value={newMessageContent}
+            onChange={handleInputChange}
+          />
+          <button className="border-2 bg-gray-100 px-4 rounded-lg" onClick={addMessage}>Create Post</button>
+        </div>
+        
+        <div className='flex gap-4 justify-center items-center align-center text-green-800 font-bold'>
+          <div>2. Select an image file</div>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+        </div>
+      </div>
+      <div className="pt-4 gap-2 flex flex-col">
+        <div>
+          <h2 className="text-green-800 font-bold py-2 border-1 shadow-sm rounded-xl">All Posts</h2>
+        </div>
+        {messages.reverse().map((message, index) => (
+          <div key={index} className="border-1 rounded-xl shadow-sm align-center items-center gap-4">
+              <div className="flex bg-green-800 bg-opacity-10 text-green-800 align-center items-center justify-between px-4 pt-2">
+                <p className="user-name">Post By: {currentUser.email}</p>
                 <p className="timestamp">{formatTimestamp(message.timestamp)}</p>
               </div>
-            </div>
-            <div className="message-content"><p>{message.content}</p></div>
+              
+              <div className='flex p-4'>
+                {message.imageUrl && (
+                  <img src={message.imageUrl} alt="User uploaded" className="max-w-[200px]" />
+                )}
+                <div className="px-12 py-8">
+                  <div className="message-content"><p>{message.content}</p></div>
+                </div>
+              </div>
           </div>
         ))}
       </div>
@@ -108,7 +139,6 @@ function Forum() {
   );
 }
 
-// Function to format timestamp
 function formatTimestamp(timestamp) {
   return moment(timestamp).fromNow(); // Use moment library to format timestamp
 }
