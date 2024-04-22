@@ -7,6 +7,8 @@ const Planner = () => {
 
   const vegetables = {
     'Tomato': '🍅', // Tomato
+    'Tomato': '🍅', // Tomato
+
     'Lettuce': '🥬', // Lettuce
     'Squash': '🧅', // Squash
     'Eggplant': '🍆', // Eggplant
@@ -29,20 +31,26 @@ const Planner = () => {
   return (
     <div className="planner-container">
       {/* Legend */}
-      <div className="legend">
+      <div className="legend-box">
         <div className="legend-title">Legend</div>
-        {Object.keys(vegetables).map((color) => (
-          <div
-            key={color}
-            className={`legend-item ${selectedVegetable === color ? 'selected' : ''}`}
-            onClick={() => handleVegetableSelection(color)}
-          >
-            <span role="img" aria-label={vegetables[color]} style={{ marginRight: '8px', cursor: 'pointer' }}>
-              {vegetables[color]}
-            </span>
-            <div>{color}</div>
-          </div>
-        ))}
+        <div className="legend">
+          {Object.keys(vegetables).map((vegetable) => (
+            <div
+              key={vegetable}
+              className={`legend-item ${selectedVegetable === vegetable ? 'selected' : ''}`}
+              onClick={() => handleVegetableSelection(vegetable)}
+            >
+              <span
+                role="img"
+                aria-label={vegetables[vegetable]}
+                style={{ marginRight: '8px', cursor: 'pointer' }}
+              >
+                {vegetables[vegetable]}
+              </span>
+              <div>{vegetable}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Garden Bed Grid */}
