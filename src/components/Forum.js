@@ -13,7 +13,6 @@ function Forum({ messages }) {
       <div className="message-container">
         {messages.map((message, index) => (
           <div key={index} className="message-box">
-            {/* User Name and Timestamp */}
             <div className="message-header">
               <div className="user-info">
                 <p className="user-name">{currentUser.email}</p> 
@@ -22,8 +21,6 @@ function Forum({ messages }) {
             </div>
             <div className="message-content"><p>{message}</p></div>
           </div>
-
-
         ))}
       </div>
     </div>
