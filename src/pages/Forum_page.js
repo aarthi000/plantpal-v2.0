@@ -56,7 +56,7 @@ function Forum_page() {
     };
 
     return (
-        <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12">
+        <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12 font-rowdies">
             <div className='flex justify-between items-center align-center px-12 py-6'>
                 <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
                 <div className>
