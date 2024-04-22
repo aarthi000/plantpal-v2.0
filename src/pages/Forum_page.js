@@ -97,7 +97,6 @@ function Forum_page() {
                     💬🌿 join the Green Chat...
                 </div>
                 <div className="bg-white center-content border-1 gap-48 rounded-lg p-12 " ref={forumRef}>
-                    {/* <MessageForm onAddMessage={handleAddMessage} /> */}
                     <Forum messages={messages} />
                 </div>
             </div>
