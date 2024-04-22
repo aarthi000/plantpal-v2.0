@@ -29,7 +29,7 @@ function App() {
           <Router>
             <AuthProvider>
               <Routes>
-                <Route exact path='/' element={<Forum_page/>}/>
+                <Route exact path='/' element={<Login />}/>
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/login" element={<Login />} />
