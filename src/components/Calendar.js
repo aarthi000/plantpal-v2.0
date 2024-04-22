@@ -125,7 +125,7 @@ const Calendar = () => {
                 &gt;
               </button>
             </div>
-            <div className={`grid grid-cols-7 ${isModalOpen ? "gap-4" : "gap-20"}`}>
+            <div className={`grid grid-cols-7 ${isModalOpen ? "gap-4" : "gap-10"}`}>
               {Array(firstDayOfMonth)
                 .fill(null)
                 .map((_, index) => (
@@ -137,7 +137,7 @@ const Calendar = () => {
                   <div
                     key={day}
                     className={`text-center relative ${
-                      isModalOpen ? "px-4 py-4" : "px-20 py-20"
+                      isModalOpen ? "px-4 py-4" : "px-10 py-10"
                     } border cursor-pointer ${
                       currentYear === new Date().getFullYear() &&
                       currentMonth === new Date().getMonth() &&
