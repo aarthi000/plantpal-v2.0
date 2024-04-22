@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Calendar from '../components/Calendar'; // Import your calendar component
+import Planner from '../components/Planner';
 
 export const Journal = () => {
     //delete me!
@@ -58,6 +59,10 @@ export const Journal = () => {
                 <div className="bg-white center-content border-1 gap-48 rounded-lg p-12">
                     {/* Include your Calendar component here */}
                     <Calendar />
+                </div>
+                <div className="bg-white center-content border-1 gap-48 rounded-lg p-12">
+                    {/* Include your Calendar component here */}
+                    <Planner />
                 </div>
             </div>
 
