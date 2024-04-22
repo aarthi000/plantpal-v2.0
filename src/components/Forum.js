@@ -27,14 +27,9 @@ function Forum() {
       timestamp: new Date().toISOString(),
     },
     {
-      content: '{
-        content: 'Many plants have medicinal properties and have been used in traditional and modern medicine for thousands of years. A large percentage of pharmaceuticals are derived from plant compounds. For example, the bark of the willow tree contains salicin, which is used to produce aspirin.',
-        timestamp: new Date().toISOString(),
-      },',
+      content: 'Many plants have medicinal properties and have been used in traditional and modern medicine for thousands of years. A large percentage of pharmaceuticals are derived from plant compounds. For example, the bark of the willow tree contains salicin, which is used to produce aspirin.',
       timestamp: new Date().toISOString(),
     },
-
-
   ]);
 
   // State for the new message content and image
@@ -119,6 +114,7 @@ function Forum() {
       </div>
     </div>
   );
+  
 }
 
 function formatTimestamp(timestamp) {
