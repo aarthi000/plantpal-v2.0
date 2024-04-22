@@ -127,41 +127,30 @@ const Profile = () => {
       
 
     return (
-        <div className="bg-[#151321] min-h-screen">
-      <div className='flex justify-between items-center align-center px-12 py-6'>
-          <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
+        <div className="bg-[#151321] min-h-[900px] flex flex-col gap-12">
+            <div className='flex justify-between items-center align-center px-12 py-6'>
+                <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
+                <div className='flex gap-4'>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickForum}>🌿 Forum</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickJournal}>📝 My Journal</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickMap}>🌿 Find Plants</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickGarden}>🌿 Garden Planner</button>
+                    <div className="border-1 px-8 py-2 rounded-lg border-red-400 bg-red-300 bg-opacity-10 text-red-400 font-semibold w-[100px] text-xs font-semibold">
+                        <button >logout</button>
+                </div>
+                </div>
+            </div> 
 
-
-          <div className='flex gap-4'>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickForum}>🌿 Forum</button>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickJournal}>📝 My Journal</button>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickMap}>🌿 Find Plants</button>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickGarden}>🌿 Garden Planner</button>
-            
-            <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
-                <button >logout</button>
-          </div>
-          </div>
-      </div>
-
-
-      <div className="flex justify-center">
-          <div className="flex gap-24">
-
-
-          </div>
-      </div>
             <div className='profileCard'>
-            <div className='top-container'>
-            <div className='icon-container'>
-                <EditIcon/>
-                <button className= 'btn-flex' onClick={() => setEditDialogOpen(true)} style={{ cursor: 'pointer' }} >Info</button>
-            </div>
-
-            <div className='icon-container'>
-                <AiFillHeart/>
-                <button className= 'btn-flex' onClick={() => setWishlistDialogOpen(true)} style={{ cursor: 'pointer' }} >Wishlist</button>
-            </div>
+            <div className='flex justify-between px-24 py-8'>
+                <div className='flex items-center align-center gap-2'>
+                    <EditIcon/>
+                    <button className= 'btn-flex' onClick={() => setEditDialogOpen(true)} style={{ cursor: 'pointer' }} >Info</button>
+                </div>
+                <div className='flex items-center align-center gap-2'>
+                    <AiFillHeart/>
+                    <button className= 'btn-flex' onClick={() => setWishlistDialogOpen(true)} style={{ cursor: 'pointer' }} >Wishlist</button>
+                </div>
             </div>
                 <div className='circle' onClick={handleImageClick}>
                     {profileImage ? (
@@ -177,8 +166,7 @@ const Profile = () => {
                         accept="image/*"
                     />
                 </div>
-                {/* User stats and listing section code */}
-                <div className='name'>
+            <div className='name'>
             {currentUser && (
                 <div>
                     <h2>{currentUser.name}</h2>

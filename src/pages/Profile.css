@@ -15,14 +15,14 @@
 
 .profileCard {
     position: relative;
-    height: 650px;
+    height: auto;
     width:50%;
     border: none;
     border-radius: 12px;
     background-color: white;
     z-index: 2;
     margin: 0 auto;
-    top: 100px;
+    padding-bottom: 12px;
 }
 
 .circle {

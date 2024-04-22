@@ -33,7 +33,7 @@ export const Garden = () => {
                 <Link to="/Forum_page">
                   <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
                 </Link>
-                <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
+                <div className="border-1 px-8 py-2 rounded-lg border-red-400 bg-red-300 bg-opacity-10 text-red-400 font-semibold w-[100px] text-xs font-semibold">
                     <button>logout</button>
                 </div>
             </div>
