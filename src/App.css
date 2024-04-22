@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 /* Global settings */
 :root {
   --background-color: #f0f0f0; /* Light grey background */
@@ -13,6 +13,7 @@
 }
 
 body, html {
+  font-family: 'Urbanist', sans-serif;
   margin: 0;
   padding: 0;
   font-family: Andale Mono, monospace; /*'Arial', sans-serif;*/

@@ -82,7 +82,7 @@ const Advice = () => {
       <div className="flex justify-center">
           <div className="flex gap-28">
           <div className="flex flex-col gap-2 justify-center items-center">
-                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12">gardening advice</div>
+                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12 font-urbanist-100">gardening advice</div>
                 <div className='text-white opacity-50'>
                   Powered by Deepmind 🌸
                 </div>

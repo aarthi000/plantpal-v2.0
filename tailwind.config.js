@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      'rowdies': ['Rowdies', 'sans-serif']
+      'rowdies': ['Rowdies', 'sans-serif'],
+      'urbanist': ['Urbanist', 'sans-serif']
     }
 
   },

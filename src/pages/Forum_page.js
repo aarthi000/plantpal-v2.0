@@ -60,7 +60,7 @@ function Forum_page() {
     };
 
     return (
-        <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12 font-rowdies">
+        <div className="w-full bg-[#151321] min-h-screen text-[#151321] flex flex-col gap-4 pb-12 ">
             <div className='flex justify-between items-center align-center px-12 py-6'>
                 <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
                 <div className>
@@ -74,7 +74,7 @@ function Forum_page() {
                 <div className='text-6xl justify-center items-center align-center'>
                 ✨
                 </div>
-                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12">PlantPal Forum</div>
+                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12 font-urbanist-100">PlantPal forum</div>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <div className='text-6xl justify-center items-center align-center'>
                 ✨
