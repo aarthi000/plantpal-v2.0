@@ -5,11 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogTitle, TextField, Button, DialogActions } from '@mui/material';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { useAuth } from "./login/contexts/AuthContext";
-import { BsArrowRightShort } from "react-icons/bs";
 import { AiFillHeart } from "react-icons/ai";
 // import {AiOutlineHeart} from "react-icons/ai"
 import EditIcon from '@mui/icons-material/Edit';
-import { BiBookHeart } from "react-icons/bi";
 
 
 
@@ -35,19 +33,23 @@ const Profile = () => {
     const [editedLocation, setEditedLocation] = useState('');
     const navigate = useNavigate();
     const [isWishlistDialogOpen, setWishlistDialogOpen] = useState(false);
+    const [newItem, setNewItem] = useState('');
 
-
-    const addToWishlist = (plant) => {
-        if (!wishlist.some(item => item.name === plant.name)) {
-            setWishlist([...wishlist, plant]);
+    const handleAddItem = () => {
+        if (newItem.trim() !== '') {
+            setWishlist([...wishlist, newItem]);
+            setNewItem(''); // Clear the input after adding
         } else {
-            alert("This plant is already in your wishlist.");
+            alert('Please enter a valid item.');
         }
     };
 
-    const removeFromWishlist = (plantName) => {
-        setWishlist(wishlist.filter(plant => plant.name !== plantName));
+    const handleRemoveItem = (index) => {
+        setWishlist(wishlist.filter((_, i) => i !== index));
     };
+    
+    
+    
 
 
     // Add this new state to your component
@@ -80,6 +82,7 @@ const Profile = () => {
     }
 
     const handleDialogClose = () => {
+        setWishlistDialogOpen(false);
         setDialogOpen(false);
     };
 
@@ -222,17 +225,33 @@ const Profile = () => {
                 <Dialog open={isWishlistDialogOpen} onClose={handleDialogClose}>
                     <DialogTitle>My Wishlist</DialogTitle>
                     <DialogContent>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="new-item"
+                            label="Add New Item"
+                            type="text"
+                            fullWidth
+                            value={newItem}
+                            onChange={(e) => setNewItem(e.target.value)}
+                            variant="standard"
+                        />
+                        <Button onClick={handleAddItem} color="primary" style={{ marginTop: '10px' }}>
+                            Add
+                        </Button>
                         {wishlist.length > 0 ? (
                             <ul>
                                 {wishlist.map((item, index) => (
                                     <li key={index}>
-                                        {item.name}
-                                        <button onClick={() => removeFromWishlist(item.name)}>Remove</button>
+                                        {item}
+                                        <Button onClick={() => handleRemoveItem(index)} color="secondary">
+                                            Remove
+                                        </Button>
                                     </li>
                                 ))}
                             </ul>
                         ) : (
-                            <p>Your wishlist is empty.</p>
+                            <p>No items in your wishlist.</p>
                         )}
                     </DialogContent>
                     <DialogActions>
@@ -319,26 +338,7 @@ const Profile = () => {
                     <Button onClick={handleDialogClose}>Cancel</Button>
                 </Dialog>
 
-                <Dialog open={isWishlistDialogOpen} onClose={handleDialogClose}>
-                    <DialogTitle>My Wishlist</DialogTitle>
-                    <DialogContent>
-                        {wishlist.length > 0 ? (
-                            <ul>
-                                {wishlist.map((item, index) => (
-                                    <li key={index}>
-                                        {item.name}
-                                        <button onClick={() => removeFromWishlist(item.name)}>Remove</button>
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <p>Your wishlist is empty.</p>
-                        )}
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleDialogClose}>Close</Button>
-                    </DialogActions>
-                </Dialog>
+                
             </div>
         </div>
     );
