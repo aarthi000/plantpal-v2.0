@@ -61,6 +61,8 @@ const Advice = () => {
       <div className='flex justify-between items-center align-center px-12 py-6'>
           <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
 
+          
+
           <div className='flex gap-4'>
             <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickForum}>🌿 Forum</button>
             <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickJournal}>📝 My Journal</button>
@@ -72,14 +74,19 @@ const Advice = () => {
       </div>
 
       <div className="flex justify-center">
-          <div className="flex gap-24">
-
+          <div className="flex gap-28">
+          <div className="flex flex-col gap-2 justify-center items-center">
+                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12">gardening advice</div>
+                <div className='text-white opacity-50'>
+                  Powered by Deepmind 🌸
+                </div>
+          </div>
           </div>
       </div>
 
       <div className="flex flex-col items-center justify-center pt-24 px-24">
         <div className="w-full bg-white p-8 rounded-lg shadow-lg">
-          <h1 className="text-3xl font-bold text-[#151321] mb-6">AI Gardening Advice</h1>
+          <h1 className="text-3xl font-bold text-[#151321] mb-6">Get Advice</h1>
           <form onSubmit={handleSubmit} className="mb-6">
             <label htmlFor="promptInput" className="block text-[#151321] text-sm font-semibold mb-2">Enter your gardening question:</label>
             <input
