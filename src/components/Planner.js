@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import './Planner.css';
-
+import "./Planner.css";
 
 const Planner = () => {
   const [grid, setGrid] = useState(Array(80).fill(null)); // Initialize grid of 10x8 (80 cells)
