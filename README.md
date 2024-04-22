@@ -4,7 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 # Plant Pal Demo Video 
-<iframe width="560" height="315" src="https://youtu.be/Rv6tKZchi9c" frameborder="0" allowfullscreen></iframe>
+![PlantPal](https://youtu.be/Rv6tKZchi9c)
+
 
 
 
