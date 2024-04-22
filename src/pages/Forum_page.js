@@ -81,7 +81,7 @@ function Forum_page() {
                 </div>
             </div>
             <div className="flex justify-center">
-                <div className="flex gap-24">
+                <div className="flex gap-12">
                 <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickProfile}> My Profile</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickForum}>🌿 Forum</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickAdvice}>💭 Get Advice</button>

@@ -3,13 +3,13 @@ import './Profile.css';
 import { useNavigate } from "react-router-dom";
 
 import { Dialog, DialogContent, DialogTitle, TextField, Button, DialogActions } from '@mui/material';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
+// import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { useAuth } from "./login/contexts/AuthContext";
 import { AiFillHeart } from "react-icons/ai";
 // import {AiOutlineHeart} from "react-icons/ai"
 import EditIcon from '@mui/icons-material/Edit';
-
-
+import { PhotoCamera } from '@mui/icons-material';
+import { SomeIcon } from '@mui/icons-material';
 
 
 const Profile = () => {
