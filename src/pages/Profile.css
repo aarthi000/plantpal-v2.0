@@ -15,8 +15,8 @@
 
 .profileCard {
     position: relative;
-    height: 550px;
-    width: 950px;
+    height: 650px;
+    width:50%;
     border: none;
     border-radius: 12px;
     background-color: white;
@@ -38,6 +38,12 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: aliceblue;
 }
+
+.edit-icon-container{
+    padding: 2%;
+    position: relative;
+}
+
 
 .circle img {
     width: 100%; /* Makes the image fully occupy the width of the circle */
@@ -77,13 +83,14 @@
         justify-content: space-between;
 
         h1{
-            font-size: 1rem;
+            font-size: 1.5rem;
             color: black;
             font-weight: 700;
+            padding-bottom: 1.5rem;
         }
 
         .btn{
-            border: 1px solid transparent;
+            border: 1px solid green;
             font-weight: 500;
         }
 
@@ -135,4 +142,20 @@
         color: black;
         padding: 1rem 0;
     }
+}
+
+.top-container{
+    display: flex; /* This defines a flex container; inline or block depending on the given value. */
+    justify-content: center; /* This defines the alignment along the main axis. */
+    align-items: center; /* This defines the default behavior for how flex items are laid out along the cross axis on the current line. */
+    gap: 80%; /* This defines the space between each child element. */
+}
+
+.icon-container{
+    padding-top: 10px;
+    flex: 1.5;
+}
+
+.btn-flex{
+    font-size: 1.2rem;
 }

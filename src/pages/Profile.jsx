@@ -1,13 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Profile.css';
-import { Dialog, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
+import { useNavigate } from "react-router-dom";
+
+import { Dialog, DialogContent, DialogTitle, TextField, Button, DialogActions } from '@mui/material';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { useAuth } from "./login/contexts/AuthContext";
 import { BsArrowRightShort } from "react-icons/bs";
 import { AiFillHeart } from "react-icons/ai";
-import {AiOutlineHeart} from "react-icons/ai"
+// import {AiOutlineHeart} from "react-icons/ai"
+import EditIcon from '@mui/icons-material/Edit';
+import { BiBookHeart } from "react-icons/bi";
+
+
+
 
 const Profile = () => {
+    
     const { currentUser } = useAuth();
     const inputRef = useRef(null);
     const [plants, setPlants] = useState([
@@ -16,10 +24,60 @@ const Profile = () => {
         { name: "Apple Tree", image: require("../pictures/apple.png") },
         { name: "Orange Plant", image: require("../pictures/orange.png") }
     ]);
+
     const [isDialogOpen, setDialogOpen] = useState(false);
     const [newPlantName, setNewPlantName] = useState('');
     const [newPlantImage, setNewPlantImage] = useState(null);
     const [profileImage, setProfileImage] = useState(null);
+    const [isEditDialogOpen, setEditDialogOpen] = useState(false);
+    const [editedName, setEditedName] = useState('');
+    const [editedBio, setEditedBio] = useState('');
+    const [editedLocation, setEditedLocation] = useState('');
+    const navigate = useNavigate();
+    const [isWishlistDialogOpen, setWishlistDialogOpen] = useState(false);
+
+
+    const addToWishlist = (plant) => {
+        if (!wishlist.some(item => item.name === plant.name)) {
+            setWishlist([...wishlist, plant]);
+        } else {
+            alert("This plant is already in your wishlist.");
+        }
+    };
+
+    const removeFromWishlist = (plantName) => {
+        setWishlist(wishlist.filter(plant => plant.name !== plantName));
+    };
+
+
+    // Add this new state to your component
+        const [wishlist, setWishlist] = useState([]);
+
+
+
+    const handleEditProfile = () => {
+        console.log("Profile updated with: ", editedName, editedBio, editedLocation);
+        // updateUserProfile(currentUser.id, editedName, editedBio, editedLocation);
+
+        setEditDialogOpen(false);
+    };
+
+
+    const clickForum = () => {
+        navigate("/");
+    }
+  
+    const clickJournal = () => {
+        navigate("/journal");
+    }
+  
+    const clickMap = () => {
+      navigate("/map");
+    }
+  
+    const clickGarden = () => {
+      navigate("/garden");
+    }
 
     const handleDialogClose = () => {
         setDialogOpen(false);
@@ -36,22 +94,34 @@ const Profile = () => {
     };
 
     const handleAddPlant = () => {
-        if (newPlantImage) {
-            // Here you would typically upload the image to a server and get the URL in response
-            console.log("File to be handled:", newPlantImage);
-            setPlants(currentPlants => [
-                ...currentPlants,
-                { name: newPlantName, image: URL.createObjectURL(newPlantImage) }
-            ]);
-            setNewPlantName('');
-            setNewPlantImage(null);
-            setDialogOpen(false);
+        if (newPlantName && newPlantImage) {  // Check if both name and image are provided
+            const newPlant = {
+                name: newPlantName,
+                image: URL.createObjectURL(newPlantImage)  // Create a URL for the image file
+            };
+            setPlants(currentPlants => [...currentPlants, newPlant]);  // Add new plant to the array
+            setNewPlantName('');  // Reset the plant name
+            setNewPlantImage(null);  // Reset the plant image
+            setDialogOpen(false);  // Close the dialog
+        } else {
+            alert('Please fill all fields!');  // Alert if one of the fields is missing
         }
     };
 
     const handlePlantImageChange = (event) => {
-        setNewPlantImage(event.target.files[0]);
+        if (event.target.files[0]) {
+            setNewPlantImage(event.target.files[0]);  // Update newPlantImage with the selected file
+        }
     };
+
+    useEffect(() => {
+        if (currentUser) {
+          setEditedName(currentUser.name || ''); // Default to empty string if undefined
+          setEditedBio(currentUser.bio || '');
+          setEditedLocation(currentUser.location || '');
+        }
+      }, [currentUser]); // Depend on currentUser to re-run this effect
+      
 
     return (
         <div className="bg-[#151321] min-h-screen">
@@ -60,7 +130,11 @@ const Profile = () => {
 
 
           <div className='flex gap-4'>
-            <button onClick={clickHome} className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" > Home </button>
+            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickForum}>🌿 Forum</button>
+            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickJournal}>📝 My Journal</button>
+            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickMap}>🌿 Find Plants</button>
+            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickGarden}>🌿 Garden Planner</button>
+            
             <div className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold w-[100px] text-xs font-semibold">
                 <button >logout</button>
           </div>
@@ -75,6 +149,17 @@ const Profile = () => {
           </div>
       </div>
             <div className='profileCard'>
+            <div className='top-container'>
+            <div className='icon-container'>
+                <EditIcon/>
+                <button className= 'btn-flex' onClick={() => setEditDialogOpen(true)} style={{ cursor: 'pointer' }} >Info</button>
+            </div>
+
+            <div className='icon-container'>
+                <AiFillHeart/>
+                <button className= 'btn-flex' onClick={() => setWishlistDialogOpen(true)} style={{ cursor: 'pointer' }} >Wishlist</button>
+            </div>
+            </div>
                 <div className='circle' onClick={handleImageClick}>
                     {profileImage ? (
                         <img src={URL.createObjectURL(profileImage)} alt='Profile' className='img-display-after' />
@@ -89,14 +174,13 @@ const Profile = () => {
                         accept="image/*"
                     />
                 </div>
-                <div className='name'>
-                    {currentUser && <h2>{currentUser.email}</h2>}
-                </div>
                 {/* User stats and listing section code */}
                 <div className='name'>
             {currentUser && (
                 <div>
+                    <h2>{currentUser.name}</h2>
                     <h2>{currentUser.email}</h2>
+                    
                 </div>
             )}
         </div>
@@ -117,7 +201,7 @@ const Profile = () => {
                 <div className='heading flex'>
                     <h1>My Listings </h1>
                     <button className='btn flex' onClick={() => setDialogOpen(true)}>
-                        Add Plant <BsArrowRightShort className='icon'/>
+                        Add Plant 
                     </button>
                 </div>
 
@@ -125,15 +209,82 @@ const Profile = () => {
                 <div className='secContainer flex'>
                     {plants.map((plant, index) => (
                         <div key={index} className='singleItem'>
-                            <AiOutlineHeart className='icon'/>
+                            <AiFillHeart className='icon'/>
                             <img src={plant.image} alt={plant.name}/>
                             <h3>{plant.name}</h3>
                         </div>
                     ))}
                 </div>
 
+
+                
+
+                <Dialog open={isWishlistDialogOpen} onClose={handleDialogClose}>
+                    <DialogTitle>My Wishlist</DialogTitle>
+                    <DialogContent>
+                        {wishlist.length > 0 ? (
+                            <ul>
+                                {wishlist.map((item, index) => (
+                                    <li key={index}>
+                                        {item.name}
+                                        <button onClick={() => removeFromWishlist(item.name)}>Remove</button>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>Your wishlist is empty.</p>
+                        )}
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleDialogClose}>Close</Button>
+                    </DialogActions>
+                </Dialog>
                 
             </div>
+
+            <Dialog open={isEditDialogOpen} onClose={() => setEditDialogOpen(false)}>
+    <DialogTitle>Edit Profile</DialogTitle>
+    <DialogContent>
+        <TextField
+            autoFocus
+            margin="dense"
+            id="edit-name"
+            label="Name"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={editedName}
+            onChange={(e) => setEditedName(e.target.value)}
+        />
+        <TextField
+            margin="dense"
+            id="edit-bio"
+            label="Bio"
+            type="text"
+            fullWidth
+            multiline
+            rows={4}
+            variant="standard"
+            value={editedBio}
+            onChange={(e) => setEditedBio(e.target.value)}
+        />
+        <TextField
+            margin="dense"
+            id="edit-location"
+            label="Location"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={editedLocation}
+            onChange={(e) => setEditedLocation(e.target.value)}
+        />
+    </DialogContent>
+    <DialogActions>
+        <Button onClick={() => setEditDialogOpen(false)}>Cancel</Button>
+        <Button onClick={handleEditProfile}>Save</Button>
+    </DialogActions>
+</Dialog>
+
 
 
                 <Dialog open={isDialogOpen} onClose={handleDialogClose}>
@@ -166,6 +317,27 @@ const Profile = () => {
                     </DialogContent>
                     <Button onClick={handleAddPlant}>Submit</Button>
                     <Button onClick={handleDialogClose}>Cancel</Button>
+                </Dialog>
+
+                <Dialog open={isWishlistDialogOpen} onClose={handleDialogClose}>
+                    <DialogTitle>My Wishlist</DialogTitle>
+                    <DialogContent>
+                        {wishlist.length > 0 ? (
+                            <ul>
+                                {wishlist.map((item, index) => (
+                                    <li key={index}>
+                                        {item.name}
+                                        <button onClick={() => removeFromWishlist(item.name)}>Remove</button>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>Your wishlist is empty.</p>
+                        )}
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleDialogClose}>Close</Button>
+                    </DialogActions>
                 </Dialog>
             </div>
         </div>
