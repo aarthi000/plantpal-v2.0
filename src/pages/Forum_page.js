@@ -3,7 +3,7 @@ import { Alert } from "react-bootstrap";
 import { useAuth } from "./login/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Forum from '../components/Forum';
-import MessageForm from '../components/MessageForm';
+// import MessageForm from '../components/MessageForm';
 
 function Forum_page() {
     const navigate = useNavigate();
@@ -97,7 +97,7 @@ function Forum_page() {
                     💬🌿 join the Green Chat...
                 </div>
                 <div className="bg-white center-content border-1 gap-48 rounded-lg p-12 " ref={forumRef}>
-                    <MessageForm onAddMessage={handleAddMessage} />
+                    {/* <MessageForm onAddMessage={handleAddMessage} /> */}
                     <Forum messages={messages} />
                 </div>
             </div>
