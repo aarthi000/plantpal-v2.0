@@ -5,11 +5,18 @@
     font-family: 'Kumbh Sans', sans-serif;
 }
 
+:root{
+    --itemCardColor: hsl(120,5%,88%);
+    --itmeCardHover: hsl(120,27%,87%);
+    --inputColor: hsl(330,12%,97%);
+    --PrimaryColor: hsl(94, 59%,35%);
+}
+
 
 .profileCard {
     position: relative;
-    height: 450px;
-    width: 500px;
+    height: 550px;
+    width: 950px;
     border: none;
     border-radius: 12px;
     background-color: white;
@@ -32,16 +39,19 @@
   background-color: aliceblue;
 }
 
+.circle img {
+    width: 100%; /* Makes the image fully occupy the width of the circle */
+    height: 100%; /* Makes the image fully occupy the height of the circle */
+    object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
+    border-radius: 50%; /* Ensures the image itself is also circular if the image has transparent areas */
+}
+
 .name{
   color: #333;
   /* margin: 1px 120px ; */
   text-align: center ;
 
 }
-
-
-
-
 
 .stat {
     display: flex;
@@ -56,86 +66,73 @@
     text-align: center;
 }
 
+.listingSection{
+    padding-top: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    flex-basis: 70%;
 
-/* .location {
-    font-size: 18px;
-    line-height: 1.8rem;
-    color: gray;
-    text-align: center;
-}
-.age {
-    color: gray;
-    padding: 10px;
-    font-size: 18px;
+    .heading{
+        width: 100%;
+        justify-content: space-between;
+
+        h1{
+            font-size: 1rem;
+            color: black;
+            font-weight: 700;
+        }
+
+        .btn{
+            border: 1px solid transparent;
+            font-weight: 500;
+        }
+
+        .btn:hover{
+            border: 1px solid green;
+        }
+    }
 }
 
-.banner {
+
+.secContainer{
     width: 100%;
-    margin: 0 auto;
-    border-top: 0;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    margin: 1rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .singleItem{
+        position: relative;
+        width: 150px;
+        height: 170px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 1rem;
+        border-radius: 10px;
+        background: var(--itemCardColor);
+    }
+
+    &:hover{
+        background: var(--itmeCardHover);
+        box-shadow: 0 2px 2px var(--inputColor);
+    }
+
+    img{
+        max-width: 70%;
+        max-height: 70%;
+    }
+
+    .icon{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: var(--PrimaryColor);
+    }
+
+    h3{
+       font-size: 1rem;
+        color: black;
+        padding: 1rem 0;
+    }
 }
-
-.basic-info {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin-top: 3rem;
-    margin-bottom: 0.2rem;
-}
-
-
-.divider {
-    width: 100%;
-    height: .13rem;
-    background-color: #E8E9EC;
-    margin-bottom: 1.5rem;
-    margin-top: 0.9rem;
-}
-
-.social-info {
-    display: flex;
-    align-items: center;
-    padding-left: 3rem;
-    padding-right: 3rem;
-}
-
-.likes {
-    margin-left: 3rem;
-    margin-right: 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.followers {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.photos {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.social-info > div > h3 {
-    font-size: 18px;
-    line-height: 1.2rem;
-}
-
-.social-info > div > p {
-    font-size: 0.8rem;
-    line-height: 1rem;
-    letter-spacing: 1.5px;
-    color: gray;
-  }
-
-.basic-info > h3 {
-    font-size: 18px;
-    line-height: 1.7rem;
-    margin-top: 0.4rem;
-    font-weight: bold;
-  } */
