@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 # Plant Pal Demo Video 
-[![PlantPal](https://imgur.com/a/wUI79Yk)](https://youtu.be/Rv6tKZchi9c "PlantPal")
+[<img src="https://img.youtube.com/vi/Rv6tKZchi9c/0.jpg" width="50%">](https://youtu.be/Rv6tKZchi9c "PlantPal")
 
 
 ## Dependencies to install 
