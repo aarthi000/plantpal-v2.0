@@ -68,17 +68,17 @@ const Advice = () => {
           
 
           <div className='flex gap-4'>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickForum}>🌿 Forum</button>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickJournal}>📝 My Journal</button>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickMap}>🌿 Find Plants</button>
-            <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickGarden}>🌿 Garden Planner</button>
+          <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickForum}>🌿 Forum</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickJournal}>📝 My Journal</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickMap}>🌿 Find Plants</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickGarden}>📝 Garden Planner</button>
           </div>
       </div>
 
       <div className="flex justify-center">
           <div className="flex gap-28">
           <div className="flex flex-col gap-2 justify-center items-center">
-                <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12 font-urbanist-100">gardening advice</div>
+          <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12 font-urbanist-100 pb-4">gardening advice.</div>
                 <div className='text-white opacity-50'>
                   Powered by Deepmind 🌸
                 </div>
