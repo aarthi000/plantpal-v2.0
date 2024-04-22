@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
-import "./Planner.css";
+import './Planner.css';
 
 const Planner = () => {
   const [grid, setGrid] = useState(Array(80).fill(null)); // Initialize grid of 10x8 (80 cells)
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedVegetable, setSelectedVegetable] = useState(null);
 
-  const colors = {
-    'red': 'Tomato',
-    'green': 'Lettuce',
-    'yellow': 'Squash',
-    'purple': 'Eggplant',
-    'orange': 'Carrot',
-    'blue': 'Cucumber'
+  const vegetables = {
+    'Tomato': '🍅', // Tomato
+    'Lettuce': '🥬', // Lettuce
+    'Squash': '🧅', // Squash
+    'Eggplant': '🍆', // Eggplant
+    'Carrot': '🥕', // Carrot
+    'Cucumber': '🥒', // Cucumber
   };
 
-  const handleColorSelection = (color) => {
-    setSelectedColor(color);
+  const handleVegetableSelection = (vegetable) => {
+    setSelectedVegetable(vegetable);
   };
 
   const handleCellClick = (index) => {
-    if (selectedColor !== null) {
+    if (selectedVegetable !== null) {
       const updatedGrid = [...grid];
-      updatedGrid[index] = selectedColor;
+      updatedGrid[index] = selectedVegetable;
       setGrid(updatedGrid);
     }
   };
@@ -31,14 +31,16 @@ const Planner = () => {
       {/* Legend */}
       <div className="legend">
         <div className="legend-title">Legend</div>
-        {Object.keys(colors).map((color) => (
+        {Object.keys(vegetables).map((color) => (
           <div
             key={color}
-            className={`legend-item ${selectedColor === color ? 'selected' : ''}`}
-            style={{ backgroundColor: color }}
-            onClick={() => handleColorSelection(color)}
+            className={`legend-item ${selectedVegetable === color ? 'selected' : ''}`}
+            onClick={() => handleVegetableSelection(color)}
           >
-            {colors[color]}
+            <span role="img" aria-label={vegetables[color]} style={{ marginRight: '8px', cursor: 'pointer' }}>
+              {vegetables[color]}
+            </span>
+            <div>{color}</div>
           </div>
         ))}
       </div>
@@ -50,10 +52,14 @@ const Planner = () => {
             <div
               key={index}
               className="grid-item"
-              style={{ backgroundColor: cell || 'white' }}
+              style={{ cursor: 'pointer' }}
               onClick={() => handleCellClick(index)}
             >
-              {cell}
+              {cell && (
+                <span role="img" aria-label={cell} style={{ fontSize: '24px' }}>
+                  {vegetables[cell]}
+                </span>
+              )}
             </div>
           ))}
         </div>
