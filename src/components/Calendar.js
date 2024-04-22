@@ -51,16 +51,19 @@ const Calendar = () => {
         const updatedEntries = storedEntries ? `${storedEntries}\n${journalEntry}` : journalEntry;
         localStorage.setItem(entryKey, updatedEntries);
 
-        setIsModalOpen(false);
+        // Update the journal entries for the selected day
+        setJournalEntriesForDay((prevEntries) => [...prevEntries, journalEntry]);
+        setJournalEntry(""); // Clear the journal entry input
       } catch (error) {
         console.error("Error storing journal entry:", error);
         // Handle storage error
       }
     }
   };
-
+  
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setSelectedDay(null); // Reset selectedDay to hide weather display
   };
 
   const handlePrevMonth = () => {
@@ -106,7 +109,7 @@ const Calendar = () => {
                 &gt;
               </button>
             </div>
-            <div className={`grid grid-cols-7 ${isModalOpen ? "gap-10" : "gap-10"}`}>
+            <div className={`grid grid-cols-7 ${isModalOpen ? "gap-4" : "gap-20"}`}>
               {Array(firstDayOfMonth)
                 .fill(null)
                 .map((_, index) => (
@@ -117,7 +120,9 @@ const Calendar = () => {
                 .map((_, day) => (
                   <div
                     key={day}
-                    className={`text-center relative ${isModalOpen ? "px-4 py-4" : "px-10 py-10"} border cursor-pointer ${
+                    className={`text-center relative ${
+                      isModalOpen ? "px-4 py-4" : "px-20 py-20"
+                    } border cursor-pointer ${
                       currentYear === new Date().getFullYear() &&
                       currentMonth === new Date().getMonth() &&
                       day + 1 === new Date().getDate()
@@ -126,22 +131,16 @@ const Calendar = () => {
                     } ${day + 1 === selectedDay ? "bg-green-100" : ""}`}
                     onClick={() => handleDayClick(day + 1)}
                   >
-                    {day + 1}
-                    {selectedDay === day + 1 && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <WeatherDisplay
-                          selectedDate={new Date(currentYear, currentMonth, selectedDay)}
-                          className="max-w-full max-h-full"
-                        />
-                      </div>
-                    )}
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      {day + 1}
+                    </span>
                   </div>
                 ))}
             </div>
           </div>
         </div>
 
-        {/* Journal Entries for Selected Day */}
+        {/* Journal Entries and Weather Display */}
         {isModalOpen && (
           <div className="bg-gray-100 p-4 rounded flex-2">
             <h3 className="text-lg font-bold mb-2">
@@ -174,6 +173,24 @@ const Calendar = () => {
               >
                 Close
               </button>
+            </div>
+          </div>
+        )}
+
+        {/* Spacer Content*/}
+        {selectedDay !== null && (
+          <div className="mt-4  p-4 rounded">
+          </div>
+        )}
+
+        {/* Weather Display */}
+        {selectedDay !== null && (
+          <div className="mt-4 w-64 bg-gradient-to-r from-teal-200 to-lime-200 p-4 rounded-l-lg">
+            <h3 className="text-lg font-bold mb-2">
+              Weather
+            </h3>
+            <div className="mt-2">
+              <WeatherDisplay selectedDate={new Date(currentYear, currentMonth, selectedDay)} />
             </div>
           </div>
         )}

@@ -5,6 +5,8 @@ const WeatherDisplay = ({ selectedDate }) => {
 
   useEffect(() => {
     const fetchWeatherData = async () => {
+
+      /* Go to https://www.visualcrossing.com/ to get your API key and store it in your .env.local file with this name */
       const apiKey = process.env.REACT_APP_VISUAL_CROSSING_API_KEY;
       const formattedDate = selectedDate.toISOString().slice(0, 10); // Format date as YYYY-MM-DD
       const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/College%20Station%2C%20TX/${formattedDate}?unitGroup=us&include=days&key=${apiKey}&contentType=json`;
@@ -26,17 +28,16 @@ const WeatherDisplay = ({ selectedDate }) => {
 
   return (
     <div>
-      <h2>Weather Forecast for {selectedDate.toLocaleDateString()}</h2>
       {weatherData ? (
         <div>
           <p>Location: {weatherData.resolvedAddress}</p>
-          <p>Current Weather: {weatherData.days[0].description}</p>
-          <p>Temperature: {weatherData.days[0].temp} °F</p>
-          <p>Max Temperature: {weatherData.days[0].tempmax} °F</p>
-          <p>Min Temperature: {weatherData.days[0].tempmin} °F</p>
+          <p>Temp: {weatherData.days[0].temp} °F</p>
+          <p>Max Temp: {weatherData.days[0].tempmax} °F</p>
+          <p>Min Temp: {weatherData.days[0].tempmin} °F</p>
           <p>Humidity: {weatherData.days[0].humidity}%</p>
           <p>Precipitation: {weatherData.days[0].precip} in</p>
-          <p>Conditions: {weatherData.days[0].conditions}</p>
+          <p>Solar Radiation: {weatherData.days[0].solarradiation}</p>
+
           {/* Display Dew if available */}
           {weatherData.days[0].dew && (
             <p>Dew: {weatherData.days[0].dew} </p>
