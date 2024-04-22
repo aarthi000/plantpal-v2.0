@@ -5,11 +5,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Dependencies to install 
 npm install react-router-dom
+npm install react-scripts
 Npm install dotenv
 Npm install bootstrap
 Npm install d3
 Npm install env-cmd
 Npm install moment
+npm install @mui/icons-material --force
 
 
 
