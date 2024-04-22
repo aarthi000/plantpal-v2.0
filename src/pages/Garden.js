@@ -33,9 +33,7 @@ export const Garden = () => {
                 <Link to="/Forum_page">
                   <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
                 </Link>
-                <div className="border-1 px-8 py-2 rounded-lg border-red-400 bg-red-300 bg-opacity-10 text-red-400 font-semibold w-[100px] text-xs font-semibold">
-                    <button>logout</button>
-                </div>
+              
             </div>
             <div className="flex flex-col gap-2 justify-center items-center">
                 <div className="bg-gradient-to-r from-teal-200 to-lime-200 inline-block text-transparent bg-clip-text text-center mb-4 font-bold text-6xl pt-12">my journal entries.</div>

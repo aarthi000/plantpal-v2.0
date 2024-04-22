@@ -14,7 +14,7 @@ import { SomeIcon } from '@mui/icons-material';
 
 const Profile = () => {
     
-    const { currentUser } = useAuth();
+    const { currentUser, logout } = useAuth();
     const inputRef = useRef(null);
     const [plants, setPlants] = useState([
         { name: "Tomato Plant", image: require("../pictures/tomato_plant.png") },
@@ -34,6 +34,7 @@ const Profile = () => {
     const navigate = useNavigate();
     const [isWishlistDialogOpen, setWishlistDialogOpen] = useState(false);
     const [newItem, setNewItem] = useState('');
+    const [error, setError] = useState("");
 
     const handleAddItem = () => {
         if (newItem.trim() !== '') {
@@ -81,6 +82,10 @@ const Profile = () => {
       navigate("/garden");
     }
 
+    const clickAdvice = () => {
+        navigate("/advice");
+      }
+
     const handleDialogClose = () => {
         setWishlistDialogOpen(false);
         setDialogOpen(false);
@@ -117,6 +122,17 @@ const Profile = () => {
         }
     };
 
+    const handleLogout = async () => {
+        setError("");
+
+        try {
+            await logout();
+            navigate("/login");
+        } catch {
+            setError("Failed to log out");
+        }
+    };
+
     useEffect(() => {
         if (currentUser) {
           setEditedName(currentUser.name || ''); // Default to empty string if undefined
@@ -131,12 +147,13 @@ const Profile = () => {
             <div className='flex justify-between items-center align-center px-12 py-6'>
                 <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
                 <div className='flex gap-4'>
-                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickForum}>🌿 Forum</button>
-                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickJournal}>📝 My Journal</button>
-                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickMap}>🌿 Find Plants</button>
-                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold text-xs" onClick={clickGarden}>🌿 Garden Planner</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickForum}>🌿 Forum</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickAdvice}>💭 Get Advice</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickJournal}>📝 My Journal</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickMap}>🌿 Find Plants</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickGarden}>📝 Garden Planner</button>
                     <div className="border-1 px-8 py-2 rounded-lg border-red-400 bg-red-300 bg-opacity-10 text-red-400 font-semibold w-[100px] text-xs font-semibold">
-                        <button >logout</button>
+                    <button onClick={handleLogout}>logout</button>
                 </div>
                 </div>
             </div> 

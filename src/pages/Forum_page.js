@@ -64,10 +64,6 @@ function Forum_page() {
             <div className='flex justify-between items-center align-center px-12 py-6'>
                 <img src="./plantpallogo.png" alt="leaf" className="h-8"/>
                 <div className>
-
-                <div className="border-1 px-8 py-2 rounded-lg border-red-400 bg-red-300 bg-opacity-10 text-red-400 font-semibold w-[100px] text-xs font-semibold">
-                        <button onClick={handleLogout}>logout</button>
-                    </div>
                 </div>
             </div>
             <div className="flex gap-2 justify-center items-center align-center">
@@ -82,7 +78,7 @@ function Forum_page() {
             </div>
             <div className="flex justify-center">
                 <div className="flex gap-12">
-                <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickProfile}> My Profile</button>
+                    <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickProfile}> My Profile</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickForum}>🌿 Forum</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickAdvice}>💭 Get Advice</button>
                     <button className="border-1 px-8 py-2 rounded-lg border-white bg-white bg-opacity-10 text-white font-semibold" onClick={clickJournal}>📝 My Journal</button>
