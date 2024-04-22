@@ -171,29 +171,27 @@ const Calendar = () => {
             </div>
             {/* Display uploaded images for the selected day */}
             {imageUrlsByDay[selectedDay] && (
-              <div className="mb-4">
+              <div className="mb-4" style={{ textAlign: "center" }}>
                 {imageUrlsByDay[selectedDay].map((url, index) => (
-                  <img key={index} src={url} alt={`Image ${index + 1}`} style={{ maxWidth: "100%", marginBottom: "8px" }} />
+                  <img key={index} src={url} alt={`Image ${index + 1}`} style={{ maxWidth: "100%", marginBottom: "8px", marginLeft: "auto", marginRight: "auto" }} />
                 ))}
               </div>
             )}
             {/* Upload Image Button */}
-            <div>
-              <input
-                type="file"
-                accept="image/*"
-                className="mt-2"
-                onChange={handleImageChange}
-                multiple // Allow multiple file selection
-              />
-            </div>
-            {/* Journal Entry Input */}
             <textarea
               className="w-64 h-32 p-2 border rounded mb-2"
               value={journalEntry}
               onChange={handleJournalChange}
               placeholder="Write your journal entry..."
             />
+            <div className="flex justify-center mt-2">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                multiple // Allow multiple file selection
+              />
+            </div>
             <div className="flex justify-end">
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
@@ -210,19 +208,26 @@ const Calendar = () => {
             </div>
           </div>
         )}
-      </div>
 
-      {/* Weather Display */}
-      {selectedDay !== null && (
-        <div className="mt-4 w-64 bg-yellow-200 p-4 rounded-l-lg">
-          <h3 className="text-lg font-bold mb-2">
-            Weather
-          </h3>
-          <div className="">
-            <WeatherDisplay selectedDate={new Date(currentYear, currentMonth, selectedDay)} />
+        {/* Brown box between Journal Entries and Weather Display */}
+        {selectedDay !== null && (
+          <div className="p-4 rounded-l-lg mt-4">
+            {/* Content of the brown box (optional) */}
           </div>
-        </div>
-      )}
+        )}
+
+        {/* Weather Display */}
+        {selectedDay !== null && (
+          <div className="mt-4 w-64 p-4 bg-green-100 rounded-l-lg" >
+            <h3 className="text-lg font-bold mb-2">
+              Weather
+            </h3>
+            <div className="">
+              <WeatherDisplay selectedDate={new Date(currentYear, currentMonth, selectedDay)} />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
